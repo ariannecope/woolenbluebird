@@ -1,0 +1,30 @@
+.location-filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-width: 24rem;
+  margin-bottom: var(--space-lg);
+}
+
+.location-filter__label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.location-filter__row {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.location-filter__row input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+}

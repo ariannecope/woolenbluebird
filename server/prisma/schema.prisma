@@ -1,0 +1,216 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+/// Made Whole / Journal content types. JOURNAL entries power the Journal nav
+/// item; the rest power Made Whole's landing-page filters (PRD §8, §14).
+enum StoryType {
+  INTERVIEW
+  ESSAY
+  MAKER_PROFILE
+  PODCAST
+  JOURNAL
+}
+
+enum StoryStatus {
+  DRAFT
+  PENDING
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MakerStatus {
+  PENDING
+  APPROVED
+  FEATURED
+  ARCHIVED
+}
+
+/// Shared review lifecycle for both submission types (PRD §18).
+enum SubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  ARCHIVED
+}
+
+// ---------------------------------------------------------------------------
+// Published content
+// ---------------------------------------------------------------------------
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  stories Story[] @relation("StoryCategories")
+  makers  Maker[] @relation("MakerCategories")
+}
+
+model Story {
+  id            String      @id @default(cuid())
+  title         String
+  slug          String      @unique
+  type          StoryType
+  excerpt       String?
+  content       String
+  featuredImage String?
+  author        String?
+  status        StoryStatus @default(DRAFT)
+  publishedAt   DateTime?
+
+  /// Marks obviously-fake development/placeholder content so it can be
+  /// found and removed before real launch content replaces it.
+  isDevelopmentContent Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  maker   Maker?  @relation(fields: [makerId], references: [id], onDelete: SetNull)
+  makerId String?
+
+  categories Category[] @relation("StoryCategories")
+
+  // Submissions that were reviewed and turned into this published story.
+  submissions StorySubmission[]
+
+  @@index([status])
+  @@index([type])
+  @@index([publishedAt])
+}
+
+model Maker {
+  id           String      @id @default(cuid())
+  name         String
+  slug         String      @unique
+  bio          String?
+  location     String?
+  photo        String?
+  website      String?
+  socialLinks  Json?
+  workshopInfo String?
+  status       MakerStatus @default(PENDING)
+
+  /// Marks obviously-fake development/placeholder makers so they can be
+  /// found and removed before real launch content replaces them.
+  isDevelopmentContent Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categories Category[] @relation("MakerCategories")
+  stories    Story[]
+
+  // Submissions that were reviewed and turned into this published maker.
+  submissions MakerSubmission[]
+
+  @@index([status])
+}
+
+// ---------------------------------------------------------------------------
+// Raw submissions — reviewed independently of published content
+// ---------------------------------------------------------------------------
+
+model StorySubmission {
+  id      String @id @default(cuid())
+  name    String
+  email   String
+  title   String
+  story   String
+  location      String?
+  craftCategory String?
+  website       String?
+  socialLinks   Json?
+  photo         String?
+
+  permissionToContact   Boolean @default(false)
+  publicationPermission Boolean @default(false)
+
+  status       SubmissionStatus @default(PENDING)
+  reviewNotes  String?
+  reviewedAt   DateTime?
+
+  // Set once a reviewer turns this submission into a published Story.
+  publishedStory   Story?  @relation(fields: [publishedStoryId], references: [id], onDelete: SetNull)
+  publishedStoryId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+}
+
+model MakerSubmission {
+  id                   String  @id @default(cuid())
+  makerName            String
+  submitterName        String
+  submitterEmail       String
+  description          String
+  location             String?
+  craftCategory        String?
+  website              String?
+  socialLinks          Json?
+  photo                String?
+  workshopInformation  String?
+  recommendationReason String?
+
+  permissionToContact   Boolean @default(false)
+  publicationPermission Boolean @default(false)
+
+  status      SubmissionStatus @default(PENDING)
+  reviewNotes String?
+  reviewedAt  DateTime?
+
+  // Set once a reviewer turns this submission into a published Maker.
+  convertedToMaker   Maker?  @relation(fields: [convertedToMakerId], references: [id], onDelete: SetNull)
+  convertedToMakerId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+}
+
+// ---------------------------------------------------------------------------
+// Gatherings (PRD §15) — intentionally minimal for V1
+// ---------------------------------------------------------------------------
+
+model Gathering {
+  id          String  @id @default(cuid())
+  title       String
+  slug        String  @unique
+  description String
+  location    String?
+  startsAt    DateTime?
+  endsAt      DateTime?
+  isPublished Boolean @default(false)
+
+  /// Marks obviously-fake development/placeholder gatherings so they can be
+  /// found and removed before real launch content replaces them.
+  isDevelopmentContent Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isPublished])
+  @@index([startsAt])
+}

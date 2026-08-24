@@ -1,0 +1,63 @@
+.gathering-card {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.gathering-card__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 4rem;
+  padding: var(--space-xs);
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.gathering-card__month {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.gathering-card__date--tbd .gathering-card__month {
+  color: var(--color-text-muted);
+}
+
+.gathering-card__day {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+}
+
+.gathering-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.gathering-card__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.gathering-card__meta {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.gathering-card__description {
+  margin: 0;
+  color: var(--color-text);
+}

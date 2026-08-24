@@ -1,0 +1,32 @@
+{
+  "name": "wb-server",
+  "version": "1.0.0",
+  "description": "Woolen Bluebird API",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "dev": "nodemon --exec \"node --experimental-strip-types\" src/index.js",
+    "start": "node --experimental-strip-types src/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "db:seed": "node --experimental-strip-types prisma/seed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^6.19.3"
+  }
+}

@@ -1,0 +1,36 @@
+.filter-pills {
+  margin-bottom: var(--space-lg);
+  overflow-x: auto;
+}
+
+.filter-pills__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter-pills__pill {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background-color: var(--color-surface);
+  white-space: nowrap;
+}
+
+.filter-pills__pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+.filter-pills__pill.is-active {
+  background-color: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+  color: var(--color-warm-white);
+}

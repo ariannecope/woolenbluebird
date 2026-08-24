@@ -1,0 +1,72 @@
+.maker-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.maker-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.maker-card__image-link {
+  display: block;
+}
+
+.maker-card__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.maker-card__image--placeholder {
+  background: linear-gradient(135deg, var(--color-wool), var(--color-cream));
+}
+
+.maker-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+}
+
+.maker-card__name {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.maker-card__name a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.maker-card__name a:hover {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+}
+
+.maker-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.maker-card__bio {
+  margin: 0;
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

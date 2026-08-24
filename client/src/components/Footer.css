@@ -1,0 +1,25 @@
+.site-footer {
+  margin-top: auto;
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__inner {
+  padding-block: var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.site-footer__tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-text-muted);
+  max-width: 32rem;
+}
+
+.site-footer__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

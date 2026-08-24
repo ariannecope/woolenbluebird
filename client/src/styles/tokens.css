@@ -1,0 +1,78 @@
+/*
+  Design tokens for Woolen Bluebird.
+  Palette: natural wool, cream, warm white, muted greens, soft blues,
+  earth tones — the bluebird blue is reserved as an accent, not a base color.
+*/
+:root {
+  /* Color */
+  --color-cream: #f7f2e9;
+  --color-warm-white: #fdfbf6;
+  --color-wool: #eae1d1;
+  --color-earth: #7a6a53;
+  --color-earth-dark: #4f4436;
+  --color-ink: #2e2a24;
+  --color-green: #6b7d5e;
+  --color-green-dark: #4d5c42;
+  --color-blue-accent: #4a7ba6;
+  --color-blue-accent-dark: #325a80;
+  --color-border: #ddd3c0;
+  --color-error: #a3432f;
+  --color-error-bg: #f6e6e1;
+  --color-success: #4d5c42;
+  --color-success-bg: #eaf0e3;
+
+  /* Surfaces & text (semantic) */
+  --color-bg: var(--color-warm-white);
+  --color-bg-alt: var(--color-cream);
+  --color-surface: #ffffff;
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-earth);
+  --color-accent: var(--color-blue-accent);
+  --color-accent-strong: var(--color-blue-accent-dark);
+
+  /* Typography */
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
+  --font-body: 'Seravek', 'Gill Sans Nova', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --font-size-sm: 0.9rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.15rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.75rem;
+
+  --line-height-tight: 1.2;
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5.5rem;
+
+  /* Layout */
+  --content-max-width: 72rem;
+  --content-narrow-width: 42rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Elevation — kept soft and low-contrast; this is a handmade craft
+     publication, not a glossy SaaS product. */
+  --shadow-card: 0 1px 3px rgba(46, 42, 36, 0.08), 0 1px 2px rgba(46, 42, 36, 0.06);
+  --shadow-card-hover: 0 6px 16px rgba(46, 42, 36, 0.1);
+
+  /* Quilt — shared vocabulary for the Made Whole textile backdrop and the
+     StoryCard stitched-edge treatment. --color-quilt-blue is the one
+     genuinely new color: the average tone of the vintage calico photo
+     used as the Made Whole backdrop (see MadeWhole.css), so the fill
+     shows the right color during the instant before that image decodes.
+     Everything else aliases the existing palette. */
+  --color-quilt-blue: #a0acb3;
+  --quilt-stitch-color: var(--color-border);
+
+  /* Focus */
+  --focus-ring: 3px solid var(--color-blue-accent);
+}

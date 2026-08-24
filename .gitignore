@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+*.log
+
+# Environment files may contain local secrets — only .env.example is committed
+.env
+.env.*
+!.env.example
+
+# Generated Prisma client output (regenerated via `npm run prisma:generate`)
+server/src/generated/

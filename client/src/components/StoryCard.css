@@ -1,0 +1,120 @@
+/*
+ * Simplified "story piece" treatment: a plain card with a stitched inset
+ * line, meant to sit quietly on top of Made Whole's textile backdrop
+ * (see MadeWhole.css) rather than look decorative on its own. The outer
+ * .story-card is a thin, barely-tinted frame that exists only so the
+ * dashed stitch line has room to run without crossing the image or text;
+ * .story-card__panel is always plain white so text and the dev badge stay
+ * at full, constant contrast regardless of variant. No shadows, no accent
+ * colors — separation from the backdrop comes from the border and the
+ * white panel alone.
+ */
+
+.story-card {
+  position: relative;
+  padding: var(--space-xs);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s ease;
+}
+
+.story-card:hover,
+.story-card:focus-within {
+  border-color: var(--color-text-muted);
+}
+
+.story-card::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--space-xs) / 2);
+  border: 1px dashed var(--quilt-stitch-color);
+  border-radius: calc(var(--radius-md) - 3px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Very slight, near-white surface variation only — never a hue, never
+   competing with the backdrop's blue. Kept deliberately close together so
+   the collection reads as one set, not four different cards. */
+.story-card.quilt-b,
+.story-card.quilt-d {
+  background-color: var(--color-cream);
+}
+
+.story-card.quilt-c {
+  background-color: var(--color-warm-white);
+}
+
+.story-card__panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-surface);
+  border-radius: calc(var(--radius-md) - 3px);
+  overflow: hidden;
+}
+
+.story-card__image-link {
+  display: block;
+}
+
+.story-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.story-card__image--placeholder {
+  background: linear-gradient(135deg, var(--color-wool), var(--color-cream));
+}
+
+.story-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+}
+
+.story-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.story-card__type {
+  font-weight: 600;
+  color: var(--color-accent-strong);
+}
+
+.story-card__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.story-card__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.story-card__title a:hover {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+}
+
+.story-card__byline {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.story-card__excerpt {
+  margin: 0;
+  color: var(--color-text);
+}
