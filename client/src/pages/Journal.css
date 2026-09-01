@@ -1,0 +1,11 @@
+.journal__intro {
+  max-width: var(--content-narrow-width);
+  margin-bottom: var(--space-lg);
+}
+
+.journal__tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}

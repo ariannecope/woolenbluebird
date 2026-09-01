@@ -1,0 +1,38 @@
+.admin__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  padding-block: var(--space-md);
+  background-color: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.admin__nav-link {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.35rem 0.15rem;
+  border-bottom: 2px solid transparent;
+}
+
+.admin__nav-link:hover {
+  color: var(--color-accent-strong);
+}
+
+.admin__nav-link.is-active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+.admin__main {
+  padding-block: var(--space-lg) var(--space-2xl);
+}

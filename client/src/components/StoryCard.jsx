@@ -27,7 +27,7 @@ function formatDate(isoDate) {
 }
 
 function StoryCard({ story }) {
-  const href = `/made-whole/${story.slug}`
+  const href = story.type === 'JOURNAL' ? `/journal/${story.slug}` : `/made-whole/${story.slug}`
   const publishedLabel = formatDate(story.publishedAt)
   const byline = story.maker?.name ?? story.author
   const variant = getQuiltVariant(story.slug ?? story.id)

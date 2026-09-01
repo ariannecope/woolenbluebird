@@ -16,11 +16,13 @@ A storytelling and community platform for makers. See [PRD.md](./PRD.md) for the
 
 **Phase 4B — Maker Submission** is complete: `/submit-maker` is a real, validated form (`POST /api/maker-submissions`) that creates `MakerSubmission` rows in `PENDING` status, with the same required-listing-permission / optional-contact-permission pattern as Story Submission. The Maker Directory page links to it. Shared submission-form CSS and server-side validation helpers were extracted so both forms (and any future one) stay in sync.
 
-Submissions of either kind never appear through any public `GET` endpoint and there's no way to list or read them back over the API — review will be built later as an admin feature.
-
 **Phase 5A — About / Origin Story** is complete: a real, static About page telling Woolen Bluebird's origin and larger vision, structured around the PRD's "was my story → collection of stories → community" progression, and linking out to Made Whole, the Maker Directory, Share Your Story, and Gather.
 
-Authentication and admin features do not exist yet — those are later phases and require separate approval before starting. Journal and Gather are still Phase 1 placeholders.
+**Journal** is complete: `/journal` and `/journal/:slug` are real, API-backed pages reusing the existing Story model (`type: JOURNAL`) rather than a separate content model. Journal entries are intentionally excluded from Made Whole, the homepage's Featured Stories, and story-to-story "related stories" — Journal is Arianne's own ongoing voice, kept distinct from the wider-community Made Whole collection.
+
+**Phase 5B — Admin / Review System** is complete: a private `/admin` area, gated by real authentication (single-administrator credentials in environment variables, bcrypt + a signed httpOnly JWT cookie session — no public user accounts). Admins can list, open, and review pending `StorySubmission`/`MakerSubmission` records (approve/reject with private review notes), then, separately, **publish** an approved submission — editing/cleaning up its content first — into a real `Story` or `Maker`. Publishing is idempotent (re-publishing an already-published submission returns the existing content rather than creating a duplicate) and preserves the link back to the original submission (`publishedStoryId` / `convertedToMakerId`). See `server/scripts/hash-password.js` and `server/scripts/generate-jwt-secret.js` for generating the required `ADMIN_*` env vars.
+
+Gather is still a Phase 1 placeholder.
 
 ## Stack
 
@@ -51,6 +53,14 @@ cp client/.env.example client/.env
 ```
 
 Edit `server/.env` if your local Postgres connection details differ from the default.
+
+To use the admin area (`/admin`), also set `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, and `ADMIN_JWT_SECRET` in `server/.env` — never commit real values for these (only empty names belong in `.env.example`):
+
+```bash
+cd server
+npm run admin:hash-password       # prompts for a password, prints ADMIN_PASSWORD_HASH
+npm run admin:generate-jwt-secret # prints a fresh, random ADMIN_JWT_SECRET
+```
 
 ## Database setup
 

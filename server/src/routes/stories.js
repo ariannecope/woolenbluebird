@@ -25,6 +25,12 @@ storiesRouter.get(
         })
       }
       where.type = normalizedType
+    } else {
+      // Journal entries are Arianne's personal writing, not part of the
+      // wider-community Made Whole collection — leave them out of
+      // untyped/"all stories" queries (Made Whole, homepage features)
+      // unless a caller explicitly asks for type=journal.
+      where.type = { not: 'JOURNAL' }
     }
 
     if (category !== undefined) {
@@ -72,6 +78,7 @@ storiesRouter.get(
       ? await prisma.story.findMany({
           where: {
             status: 'PUBLISHED',
+            type: { not: 'JOURNAL' },
             slug: { not: story.slug },
             OR: relatedConditions,
           },
