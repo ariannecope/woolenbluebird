@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.about__section-cta {
+  text-align: center;
+}
+
 .about__tagline {
   margin-top: var(--space-sm);
   margin-bottom: 0;
@@ -48,8 +52,56 @@
   margin-inline: auto;
 }
 
+/*
+ * Echoes Made Whole's backdrop (client/src/pages/images/quilt-fabric.png)
+ * and StoryCard's dashed stitch inset, scoped to just this one section so
+ * the shared .content-section--alt styling used elsewhere (FeaturedMakers,
+ * Gather) is untouched. .content-section--alt's own background-color stays
+ * declared underneath as a pre-load fallback, same as Made Whole's own
+ * --color-quilt-blue does — the fabric just paints over it once loaded.
+ * Unlike Made Whole, this section's prose sits directly on the backdrop
+ * (no opaque card underneath each paragraph), so the wash over the fabric
+ * is pushed noticeably lighter here to keep body text readable.
+ */
+.about__section--quilt {
+  position: relative;
+  max-width: none;
+  margin-inline: 0;
+  padding: clamp(1.25rem, 4vw, var(--space-xl));
+  background-image:
+    linear-gradient(rgba(253, 251, 246, 0.85), rgba(253, 251, 246, 0.85)),
+    url("./images/quilt-fabric.png");
+  background-size: 100% 100%, 330px 325px;
+  background-repeat: no-repeat, repeat;
+  border: 1px solid var(--color-border);
+}
+
+.about__section--quilt::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--space-xs) / 2);
+  border: 1px dashed var(--quilt-stitch-color);
+  border-radius: calc(var(--radius-lg) - 3px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.about__section--quilt > * {
+  position: relative;
+}
+
 .about__section h2 {
   margin-bottom: var(--space-md);
+}
+
+.about__portrait {
+  max-width: 20rem;
+  margin: 0 auto var(--space-lg);
+}
+
+.about__portrait img {
+  width: 100%;
+  border-radius: var(--radius-lg);
 }
 
 .about__section p {

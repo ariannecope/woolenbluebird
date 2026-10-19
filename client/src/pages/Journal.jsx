@@ -2,6 +2,7 @@ import { getStories } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
 import StoryCard from '../components/StoryCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import bluebirdDrawing from './images/bluebirdone.png'
 import './Journal.css'
 
 function Journal() {
@@ -11,12 +12,15 @@ function Journal() {
   return (
     <section className="journal">
       <header className="journal__intro">
-        <h1>Journal</h1>
-        <p className="journal__tagline">
-          Arianne's personal writing space — reflections, essays, and notes on building Woolen
-          Bluebird. Where Made Whole tells the wider community's stories, this is one voice,
-          written as it happens.
-        </p>
+        <img src={bluebirdDrawing} alt="" className="journal__bird" />
+        <div className="journal__intro-text">
+          <h1>Journal</h1>
+          <p className="journal__tagline">
+            Arianne's personal writing space — reflections, essays, and notes on building Woolen
+            Bluebird. Where Made Whole tells the wider community's stories, this is one voice,
+            written as it happens.
+          </p>
+        </div>
       </header>
 
       {status === 'loading' && <LoadingState label="Loading journal entries…" />}

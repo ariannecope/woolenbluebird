@@ -5,6 +5,7 @@ import { STORY_TYPE_FILTERS } from '../lib/storyTypes.js'
 import FilterPills from '../components/FilterPills.jsx'
 import StoryCard from '../components/StoryCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import bluebirdDrawing from './images/bluebirdthree.png'
 import './MadeWhole.css'
 
 function MadeWhole() {
@@ -23,10 +24,13 @@ function MadeWhole() {
   return (
     <section className="made-whole">
       <header className="made-whole__intro">
-        <h1>Made Whole</h1>
-        <p className="made-whole__tagline">
-          A collection of human stories stitched together by making.
-        </p>
+        <img src={bluebirdDrawing} alt="" className="made-whole__bird" />
+        <div className="made-whole__intro-text">
+          <h1>Made Whole</h1>
+          <p className="made-whole__tagline">
+            A collection of human stories stitched together by making.
+          </p>
+        </div>
       </header>
 
       <FilterPills

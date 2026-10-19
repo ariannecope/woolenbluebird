@@ -1,6 +1,30 @@
 .made-whole__intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
   max-width: var(--content-narrow-width);
   margin-bottom: var(--space-lg);
+}
+
+.made-whole__intro-text {
+  min-width: 0;
+}
+
+.made-whole__bird {
+  flex-shrink: 0;
+  width: auto;
+  height: 9.9rem;
+}
+
+@media (max-width: 40rem) {
+  .made-whole__intro {
+    flex-direction: column;
+  }
+
+  .made-whole__bird {
+    height: 7.7rem;
+  }
 }
 
 .made-whole__tagline {

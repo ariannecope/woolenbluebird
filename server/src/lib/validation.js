@@ -22,18 +22,33 @@ export function isValidUrl(value) {
 }
 
 /**
+ * Requiring people to type "https://" trips up a lot of otherwise-valid
+ * input (e.g. "instagram.com/janedoe"). If a value doesn't already look
+ * like it has a scheme, assume https:// was meant rather than rejecting it.
+ */
+function withAssumedScheme(value) {
+  return /^https?:\/\//i.test(value) ? value : `https://${value}`
+}
+
+/**
  * Validates an optional URL field, returning { value, error }. `value` is
- * the trimmed string to persist (or null if the field was left blank);
- * `error` is a user-facing message if the field was non-blank but invalid.
+ * the normalized (scheme-assumed) string to persist, or null if the field
+ * was left blank; `error` is a user-facing message if the field was
+ * non-blank but still invalid once a scheme was assumed.
  */
 export function validateOptionalUrl(raw, maxLength = DEFAULT_URL_MAX_LENGTH) {
   if (raw === undefined || raw === null || raw === '') {
     return { value: null, error: null }
   }
-  if (typeof raw !== 'string' || raw.length > maxLength || !isValidUrl(raw.trim())) {
-    return { value: null, error: 'Please enter a valid link starting with http:// or https://.' }
+  if (typeof raw !== 'string' || raw.length > maxLength) {
+    return { value: null, error: 'Please enter a valid link.' }
   }
-  return { value: raw.trim(), error: null }
+
+  const normalized = withAssumedScheme(raw.trim())
+  if (!isValidUrl(normalized)) {
+    return { value: null, error: 'Please enter a valid link.' }
+  }
+  return { value: normalized, error: null }
 }
 
 /**

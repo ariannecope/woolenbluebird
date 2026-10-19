@@ -145,6 +145,12 @@ model StorySubmission {
   permissionToContact   Boolean @default(false)
   publicationPermission Boolean @default(false)
 
+  /// Whether the submitter is open to their story being shared in other
+  /// formats (podcast, video reel, book, etc). Distinct from
+  /// publicationPermission — Woolen Bluebird would still contact them
+  /// first before actually doing anything like this.
+  openToOtherFormats Boolean @default(false)
+
   status       SubmissionStatus @default(PENDING)
   reviewNotes  String?
   reviewedAt   DateTime?

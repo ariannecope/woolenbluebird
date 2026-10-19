@@ -5,6 +5,7 @@ import FilterPills from '../components/FilterPills.jsx'
 import LocationFilter from '../components/LocationFilter.jsx'
 import MakerCard from '../components/MakerCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import bluebirdDrawing from './images/bluebirdtwo.png'
 import './MakerDirectory.css'
 
 function MakerDirectory() {
@@ -30,10 +31,15 @@ function MakerDirectory() {
   return (
     <section className="maker-directory">
       <header className="maker-directory__intro">
-        <h1>The Maker Directory</h1>
-        <p className="maker-directory__tagline">
-          Find the people who make, teach, gather, repair, grow, and share.
-        </p>
+        <div className="maker-directory__intro-row">
+          <img src={bluebirdDrawing} alt="" className="maker-directory__bird" />
+          <div className="maker-directory__intro-text">
+            <h1>The Maker Directory</h1>
+            <p className="maker-directory__tagline">
+              Find the people who make, teach, gather, repair, grow, and share.
+            </p>
+          </div>
+        </div>
         <p className="maker-directory__cta">
           Are you a maker, teacher, or creative community?{' '}
           <Link to="/submit-maker">Tell us about yourself</Link>.

@@ -208,7 +208,8 @@ function AdminStorySubmissionReview() {
             <dt>Permissions</dt>
             <dd>
               Contact: {submission.permissionToContact ? 'Yes' : 'No'} · Publish:{' '}
-              {submission.publicationPermission ? 'Yes' : 'No'}
+              {submission.publicationPermission ? 'Yes' : 'No'} · Open to podcast/reel/book:{' '}
+              {submission.openToOtherFormats ? 'Yes' : 'No'}
             </dd>
           </div>
           <div className="admin-review__field-static">

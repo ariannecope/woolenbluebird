@@ -54,6 +54,7 @@ storySubmissionsRouter.post(
 
     const permissionToContact = body.permissionToContact === true
     const publicationPermission = body.publicationPermission === true
+    const openToOtherFormats = body.openToOtherFormats === true
 
     // permissionToContact is optional; publicationPermission is required —
     // a submission cannot be accepted without explicit publish consent.
@@ -80,6 +81,7 @@ storySubmissionsRouter.post(
         socialLinks: socialLinks.value ?? undefined,
         permissionToContact,
         publicationPermission,
+        openToOtherFormats,
         status: 'PENDING',
       },
       select: { id: true, status: true, createdAt: true },

@@ -65,13 +65,15 @@
   --shadow-card-hover: 0 6px 16px rgba(46, 42, 36, 0.1);
 
   /* Quilt — shared vocabulary for the Made Whole textile backdrop and the
-     StoryCard stitched-edge treatment. --color-quilt-blue is the one
-     genuinely new color: the average tone of the vintage calico photo
-     used as the Made Whole backdrop (see MadeWhole.css), so the fill
-     shows the right color during the instant before that image decodes.
-     Everything else aliases the existing palette. */
+     StoryCard stitched-edge treatment. --color-quilt-blue is the average
+     tone of the vintage calico photo used as the Made Whole backdrop (see
+     MadeWhole.css), so the fill shows the right color during the instant
+     before that image decodes. --quilt-stitch-color is a dedicated dusky
+     blue for the dashed stitch lines (StoryCard, About's quilt section) —
+     previously aliased to --color-border's cream/tan, now its own tone so
+     it reads as thread rather than a plain UI border. */
   --color-quilt-blue: #a0acb3;
-  --quilt-stitch-color: var(--color-border);
+  --quilt-stitch-color: #5c7a94;
 
   /* Focus */
   --focus-ring: 3px solid var(--color-blue-accent);

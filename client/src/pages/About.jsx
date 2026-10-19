@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import aboutPhoto from './images/about.jpg'
 import './About.css'
 
 /*
@@ -53,45 +54,41 @@ function About() {
         aria-labelledby="my-story-heading"
       >
         <h2 id="my-story-heading">Woolen Bluebird was my story.</h2>
+        <figure className="about__portrait">
+          <img
+            src={aboutPhoto}
+            alt="Arianne wearing a handmade crocheted wrap, holding a small bundle of wildflowers"
+          />
+        </figure>
         <blockquote className="about__pullquote">
           <p>My hands could create as well as endure</p>
         </blockquote>
         <p>
-          Making became something much more personal for me than a hobby. When I
-          was living through trauma, I discovered that the simple, repetitive
-          motion of knitting could help settle something in me that words could
-          not.
+          I healed with my hands. When I
+          was living through trauma, I discovered the simple, repetitive
+          motion of knitting could help settle something in me that words couldn't reach.
         </p>
         <p>
           The needles moved back and forth. Left, right. Left, right. Again
-          and again. That bilateral rhythm gave my hands somewhere to go and
-          my nervous system something steady to follow.
+          and again. That bilateral rhythm gave my my nervous system something steady to follow as I healed from PTSD.
         </p>
         <p>
-          During some of the hardest parts of living with PTSD, knitting
-          became a way of staying present when my mind wanted to disappear. It
-          gave me a small, tangible way back into my body. And eventually,
-          making became bigger than knitting. I began raising sheep, learning
-          to handspin their wool, and dyeing the fiber that came from animals
-          I had cared for.
+          Knitting became a way of staying present when my mind wanted to disappear. It
+          gave me a small, tangible way back into my body. Eventually I stitched a whole new life. I began raising sheep, learning to handspin their wool, and dyeing the fiber with plants I grew or gathered wild.
         </p>
         <p>
-          There was something profoundly healing about that whole process —
+          The process restored me—
           caring for a living thing, gathering what it gave me, washing and
           carding the wool, spinning it into something useful, and eventually
           making something beautiful with my own hands.
         </p>
-        <p>There was a kind of restoration in it that I needed.</p>
         <p>
-          So much of what had hurt me had come through the deliberate actions
-          of another human being. Working with sheep and wool connected me
-          instead to something gentle, living, and tangible. I could take
-          something ordinary and turn it into something warm. I could take
-          loose, tangled fibers and patiently make them into something whole.
+          I was broken by the deliberate actions
+          of other human beings. Working with sheep and wool connected me instead to something gentle, living, and tangible. I could take something ordinary and turn it into something warm. I could take
+          loose, tangled fibers and patiently make them into something whole, returning to wholeness myself in the process.
         </p>
         <p>
-          I don't think making erased what happened to me. But it gave me a
-          way to move through it. It helped me remember that my hands could
+          Making didn't erase what happened to me, but it gave me a way to move through it. It helped me remember that my hands could
           create as well as endure, and that something beautiful could still
           come from a life that had been broken open.
         </p>
@@ -106,7 +103,7 @@ function About() {
       </section>
 
       <section
-        className="content-section content-section--alt about__section"
+        className="content-section content-section--alt about__section about__section--quilt"
         aria-labelledby="collection-heading"
       >
         <h2 id="collection-heading">
@@ -120,10 +117,9 @@ function About() {
           them feel a little more like themselves.
         </p>
         <p>Each story is a different piece. </p>
-        <p>And that's the point.</p>
         <p>
           Woolen Bluebird is becoming a place where those pieces can be
-          stitched together.
+          stitched together into a beautiful quilt.
         </p>
         <p>One story becomes another.</p>
         <p>One maker leads us to another.</p>
@@ -154,6 +150,11 @@ function About() {
           making as people want to bring to it — knitting, sewing, woodworking,
           gardening, pottery, cooking, repairing, building, fiber arts, and
           whatever else counts as making with your hands.
+        </p>
+        <p className="content-section__cta about__section-cta">
+          <Link to="/submit-story" className="button button--primary">
+            Submit Your Story
+          </Link>
         </p>
       </section>
 

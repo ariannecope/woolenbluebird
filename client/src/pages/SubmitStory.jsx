@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getCategories, submitStory } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
+import { normalizeUrl, isLikelyUrl } from '../lib/url.js'
 import { ErrorState } from '../components/StatusMessage.jsx'
 import FieldError from '../components/FieldError.jsx'
 
 const SOCIAL_FIELDS = [
-  { name: 'instagram', label: 'Instagram' },
-  { name: 'facebook', label: 'Facebook' },
-  { name: 'other', label: 'Another link' },
+  { name: 'instagram', label: 'Instagram', placeholder: 'instagram.com/yourhandle' },
+  { name: 'facebook', label: 'Facebook', placeholder: 'facebook.com/yourpage' },
+  { name: 'other', label: 'Another link', placeholder: 'example.com' },
 ]
 
 const INITIAL_FORM = {
@@ -22,9 +23,9 @@ const INITIAL_FORM = {
   other: '',
   permissionToContact: false,
   publicationPermission: false,
+  openToOtherFormats: false,
 }
 
-const URL_PATTERN = /^https?:\/\/.+/i
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validate(form) {
@@ -40,8 +41,8 @@ function validate(form) {
 
   for (const field of ['website', 'instagram', 'facebook', 'other']) {
     const value = form[field].trim()
-    if (value && !URL_PATTERN.test(value)) {
-      errors[field] = 'Please include http:// or https:// at the start of the link.'
+    if (value && !isLikelyUrl(value)) {
+      errors[field] = 'Please enter a valid link.'
     }
   }
 
@@ -92,7 +93,7 @@ function SubmitStory() {
 
     const socialLinks = {}
     for (const field of SOCIAL_FIELDS) {
-      const value = form[field.name].trim()
+      const value = normalizeUrl(form[field.name])
       if (value) socialLinks[field.name] = value
     }
 
@@ -103,10 +104,11 @@ function SubmitStory() {
         title: form.title.trim(),
         story: form.story.trim(),
         craftCategory: selectedCategories.length ? selectedCategories.join(', ') : undefined,
-        website: form.website.trim() || undefined,
+        website: normalizeUrl(form.website) || undefined,
         socialLinks: Object.keys(socialLinks).length ? socialLinks : undefined,
         permissionToContact: form.permissionToContact,
         publicationPermission: form.publicationPermission,
+        openToOtherFormats: form.openToOtherFormats,
       })
       setStatus('success')
     } catch (error) {
@@ -284,7 +286,7 @@ function SubmitStory() {
               id="website"
               name="website"
               type="url"
-              placeholder="https://example.com"
+              placeholder="example.com"
               value={form.website}
               onChange={handleChange}
               disabled={isSubmitting}
@@ -303,7 +305,7 @@ function SubmitStory() {
                 id={field.name}
                 name={field.name}
                 type="url"
-                placeholder="https://"
+                placeholder={field.placeholder}
                 value={form[field.name]}
                 onChange={handleChange}
                 disabled={isSubmitting}
@@ -355,6 +357,23 @@ function SubmitStory() {
             </label>
           </div>
           <FieldError id="publicationPermission-error" message={fieldErrors.publicationPermission} />
+
+          <div className="field field--checkbox">
+            <input
+              id="openToOtherFormats"
+              name="openToOtherFormats"
+              type="checkbox"
+              checked={form.openToOtherFormats}
+              onChange={handleChange}
+              disabled={isSubmitting}
+            />
+            <label htmlFor="openToOtherFormats" className="field__label">
+              <strong>Open to Other Formats</strong> <span className="field__hint">(optional)</span>
+              {' — '}I'd be open to having my story shared in other formats, like a podcast
+              episode, video reel, or book. Woolen Bluebird would contact me first before doing
+              anything like this — checking this box doesn't commit me to it.
+            </label>
+          </div>
         </fieldset>
 
         <button type="submit" className="button button--primary" disabled={isSubmitting}>

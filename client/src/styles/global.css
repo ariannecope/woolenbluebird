@@ -89,6 +89,14 @@ select:focus-visible {
   padding-inline: var(--space-md);
 }
 
+/* Breathing room between the site header and page content. Scoped to
+   #main-content (not .container itself, which Nav/Footer/AdminLayout also
+   use for their own inner width constraint) so only the public page body
+   gets the extra top space. */
+#main-content {
+  padding-top: var(--space-xl);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

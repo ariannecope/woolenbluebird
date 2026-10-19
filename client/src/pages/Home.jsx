@@ -2,14 +2,12 @@ import { Link } from 'react-router-dom'
 import FeaturedStories from '../components/FeaturedStories.jsx'
 import FeaturedMakers from '../components/FeaturedMakers.jsx'
 import GatherPreview from '../components/GatherPreview.jsx'
-import BluebirdEmblem from '../components/BluebirdEmblem.jsx'
 import './Home.css'
 
 function Home() {
   return (
     <>
       <section className="hero">
-        <BluebirdEmblem />
         <h1>Woolen Bluebird</h1>
         <p className="hero__tagline">
           Connecting people through the healing power of making

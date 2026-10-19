@@ -3,6 +3,32 @@
   margin-bottom: var(--space-lg);
 }
 
+.maker-directory__intro-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.maker-directory__bird {
+  flex-shrink: 0;
+  width: auto;
+  height: 9.9rem;
+}
+
+.maker-directory__intro-text {
+  min-width: 0;
+}
+
+@media (max-width: 40rem) {
+  .maker-directory__intro-row {
+    flex-direction: column;
+  }
+
+  .maker-directory__bird {
+    height: 7.7rem;
+  }
+}
+
 .maker-directory__tagline {
   font-family: var(--font-display);
   font-style: italic;

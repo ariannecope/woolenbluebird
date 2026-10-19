@@ -7,12 +7,6 @@
   text-align: center;
 }
 
-.bluebird-emblem {
-  width: 13rem;
-  height: auto;
-  margin-bottom: var(--space-sm);
-}
-
 .hero h1 {
   margin-bottom: var(--space-sm);
 }

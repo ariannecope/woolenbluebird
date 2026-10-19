@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getCategories, submitMaker } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
+import { normalizeUrl, isLikelyUrl } from '../lib/url.js'
 import { ErrorState } from '../components/StatusMessage.jsx'
 import FieldError from '../components/FieldError.jsx'
 
 const SOCIAL_FIELDS = [
-  { name: 'instagram', label: 'Instagram' },
-  { name: 'facebook', label: 'Facebook' },
-  { name: 'other', label: 'Another link' },
+  { name: 'instagram', label: 'Instagram', placeholder: 'instagram.com/yourhandle' },
+  { name: 'facebook', label: 'Facebook', placeholder: 'facebook.com/yourpage' },
+  { name: 'other', label: 'Another link', placeholder: 'example.com' },
 ]
 
 const INITIAL_FORM = {
@@ -26,7 +27,6 @@ const INITIAL_FORM = {
   publicationPermission: false,
 }
 
-const URL_PATTERN = /^https?:\/\/.+/i
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validate(form, selectedCategories) {
@@ -45,8 +45,8 @@ function validate(form, selectedCategories) {
 
   for (const field of ['website', 'instagram', 'facebook', 'other']) {
     const value = form[field].trim()
-    if (value && !URL_PATTERN.test(value)) {
-      errors[field] = 'Please include http:// or https:// at the start of the link.'
+    if (value && !isLikelyUrl(value)) {
+      errors[field] = 'Please enter a valid link.'
     }
   }
 
@@ -98,7 +98,7 @@ function SubmitMaker() {
 
     const socialLinks = {}
     for (const field of SOCIAL_FIELDS) {
-      const value = form[field.name].trim()
+      const value = normalizeUrl(form[field.name])
       if (value) socialLinks[field.name] = value
     }
 
@@ -109,7 +109,7 @@ function SubmitMaker() {
         location: form.location.trim(),
         description: form.description.trim(),
         craftCategory: selectedCategories.join(', '),
-        website: form.website.trim() || undefined,
+        website: normalizeUrl(form.website) || undefined,
         socialLinks: Object.keys(socialLinks).length ? socialLinks : undefined,
         workshopInformation: form.workshopInformation.trim() || undefined,
         recommendationReason: form.recommendationReason.trim() || undefined,
@@ -297,7 +297,7 @@ function SubmitMaker() {
               id="website"
               name="website"
               type="url"
-              placeholder="https://example.com"
+              placeholder="example.com"
               value={form.website}
               onChange={handleChange}
               disabled={isSubmitting}
@@ -316,7 +316,7 @@ function SubmitMaker() {
                 id={field.name}
                 name={field.name}
                 type="url"
-                placeholder="https://"
+                placeholder={field.placeholder}
                 value={form[field.name]}
                 onChange={handleChange}
                 disabled={isSubmitting}

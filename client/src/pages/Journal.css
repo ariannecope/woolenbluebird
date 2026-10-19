@@ -1,6 +1,19 @@
 .journal__intro {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
   max-width: var(--content-narrow-width);
   margin-bottom: var(--space-lg);
+}
+
+.journal__bird {
+  flex-shrink: 0;
+  width: auto;
+  height: 9.9rem;
+}
+
+.journal__intro-text {
+  min-width: 0;
 }
 
 .journal__tagline {
@@ -8,4 +21,14 @@
   font-style: italic;
   font-size: var(--font-size-lg);
   color: var(--color-text-muted);
+}
+
+@media (max-width: 40rem) {
+  .journal__intro {
+    flex-direction: column;
+  }
+
+  .journal__bird {
+    height: 7.7rem;
+  }
 }

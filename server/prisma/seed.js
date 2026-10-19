@@ -27,6 +27,7 @@ const CATEGORIES = [
   { name: 'Sewing', slug: 'sewing' },
   { name: 'Weaving', slug: 'weaving' },
   { name: 'Painting & Drawing', slug: 'painting-drawing' },
+  { name: 'Photography', slug: 'photography' },
   { name: 'Leatherwork', slug: 'leatherwork' },
   { name: 'Metalwork', slug: 'metalwork' },
   { name: 'Repair & Mending', slug: 'repair-mending' },
