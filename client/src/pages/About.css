@@ -1,8 +1,12 @@
 .about__opening {
   max-width: var(--content-narrow-width);
   margin-inline: auto;
-  padding-block: var(--space-lg) var(--space-xl);
+  padding-block: var(--space-lg) var(--space-lg);
   text-align: center;
+}
+
+.about__opening + .content-section {
+  padding-top: var(--space-lg);
 }
 
 .about__section-cta {
@@ -18,11 +22,45 @@
   color: var(--color-text-muted);
 }
 
-.about__lede {
+.about__story-block {
+  position: relative;
   margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  outline: 1px dashed #b7cee3;
+  outline-offset: calc(-1 * var(--space-sm));
+  overflow: hidden;
+}
+
+.about__story-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("./images/quilttwo-rotated.png");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(181%);
+}
+
+.about__story-block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(253, 251, 246, 0.88);
+}
+
+.about__story-block > * {
+  position: relative;
+  z-index: 2;
+}
+
+.about__lede {
+  margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-lg);
-  color: var(--color-text);
+  color: #273047;
 }
 
 .about__lede p {
@@ -35,6 +73,10 @@
 
 .about__progression {
   margin-top: var(--space-xl);
+}
+
+.about__story-block .about__manifesto p {
+  color: #273047;
 }
 
 .about__progression p:not(:last-child)::after {
@@ -50,6 +92,14 @@
 .about__section {
   max-width: var(--content-narrow-width);
   margin-inline: auto;
+}
+
+.about__nest {
+  display: block;
+  width: auto;
+  height: 9rem;
+  margin: var(--space-lg) auto;
+  filter: saturate(64%) blur(0.6px);
 }
 
 /*
@@ -150,6 +200,10 @@
 
 .about__current-list li:last-child {
   margin-bottom: 0;
+}
+
+.about__current-list strong {
+  color: #6f72a0;
 }
 
 .about__manifesto {

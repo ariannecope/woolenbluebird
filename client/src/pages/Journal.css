@@ -16,6 +16,10 @@
   min-width: 0;
 }
 
+.journal__intro-text h1 {
+  color: #6f72a0;
+}
+
 .journal__tagline {
   font-family: var(--font-display);
   font-style: italic;

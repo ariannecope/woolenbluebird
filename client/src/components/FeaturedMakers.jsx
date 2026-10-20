@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { getMakers } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
 import MakerCard from './MakerCard.jsx'
+import './FeaturedMakers.css'
 
 /**
  * Same quiet-teaser approach as FeaturedStories — see that file for why
@@ -16,7 +17,7 @@ function FeaturedMakers() {
   }
 
   return (
-    <section className="content-section content-section--alt" aria-labelledby="featured-makers-heading">
+    <section className="content-section content-section--alt featured-makers" aria-labelledby="featured-makers-heading">
       <div className="content-section__intro">
         <h2 id="featured-makers-heading">The Maker Directory</h2>
         <p className="content-section__tagline">

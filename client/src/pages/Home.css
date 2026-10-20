@@ -1,24 +1,70 @@
+/*
+ * A photo of an actual pieced quilt (client/src/pages/images/
+ * quiltone-rotated.png — turned 90° for a bit of visual variety), layered
+ * over the hero's existing cream/wool diagonal gradient (kept as the
+ * bottom layer, same role it's always played) so the quilt shows through
+ * behind the title and buttons rather than replacing that background
+ * outright. Sized with `cover`, not tiled — this is a single photograph
+ * of a quilt, not a repeating fabric swatch like Made Whole/About's
+ * backdrop. Padding is tighter than before so the box hugs the text more
+ * closely.
+ */
 .hero {
-  padding: var(--space-2xl) var(--space-lg);
-  margin-block: var(--space-lg) var(--space-2xl);
-  background: linear-gradient(160deg, var(--color-cream), var(--color-wool));
+  position: relative;
+  padding: clamp(1.25rem, 4vw, var(--space-xl));
+  margin-block: var(--space-lg) var(--space-lg);
+  background-image:
+    linear-gradient(rgba(253, 251, 246, 0.6), rgba(253, 251, 246, 0.6)),
+    url("./images/quiltone-rotated.png"),
+    linear-gradient(160deg, var(--color-cream), var(--color-wool));
+  background-size: 100% 100%, cover, 100% 100%;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   text-align: center;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-xs) / 2);
+  border: 1px dashed var(--quilt-stitch-color);
+  border-radius: calc(var(--radius-lg) - 3px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+}
+
 .hero h1 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: calc(-1 * var(--space-md));
+  font-size: calc(var(--font-size-3xl) * 2.3);
 }
 
 .hero__tagline {
+  position: relative;
+  isolation: isolate;
+  z-index: 0;
+  display: inline-block;
   max-width: 36rem;
-  margin-inline: auto;
   margin-bottom: var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
   font-family: var(--font-display);
   font-style: italic;
   font-size: var(--font-size-xl);
   color: var(--color-text-muted);
+}
+
+.hero__tagline::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -0.75rem;
+  background: rgba(220, 232, 242, 0.85);
+  filter: blur(16px);
 }
 
 .hero__actions {
@@ -26,6 +72,33 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-sm);
+}
+
+/* Scoped to the hero specifically, same reasoning as the secondary button
+   below — a duskier, more muted blue than the shared .button--primary,
+   without touching that class everywhere else it's used (forms, admin). */
+.hero__actions .button--primary {
+  background-color: #476785;
+}
+
+.hero__actions .button--primary:hover {
+  background-color: #3b556d;
+}
+
+/* Transparent .button--secondary reads fine on a flat background, but
+   gets lost against the hero's quilt photo — give it an actual pale-blue
+   fill here specifically, rather than changing the shared button style
+   used elsewhere on the site. */
+.hero__actions .button--secondary {
+  background-color: #dce8f2;
+  border-color: #b7cee3;
+  color: var(--color-text);
+}
+
+.hero__actions .button--secondary:hover {
+  background-color: #cbdcea;
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
 }
 
 .mission {
@@ -41,6 +114,10 @@
   line-height: var(--line-height-tight);
   color: var(--color-text-muted);
   margin-bottom: var(--space-sm);
+}
+
+.mission__highlight {
+  color: #6f72a0;
 }
 
 .mission__line--emphasis {
@@ -62,10 +139,22 @@
   text-decoration: underline;
 }
 
+.home__nest {
+  display: block;
+  width: auto;
+  height: 9rem;
+  margin: 0 auto;
+  filter: saturate(64%) blur(0.6px);
+}
+
+.home__nest + .content-section {
+  padding-top: 0;
+}
+
 .share-cta {
   margin-block: var(--space-2xl);
   padding: var(--space-2xl) var(--space-lg);
-  background-color: var(--color-earth-dark);
+  background-color: #49433c;
   border-radius: var(--radius-lg);
   color: var(--color-warm-white);
   text-align: center;
@@ -91,6 +180,38 @@
   text-align: center;
 }
 
+.closing-statement__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.closing-statement__text {
+  min-width: 0;
+}
+
+.closing-statement__bird {
+  flex-shrink: 0;
+  width: auto;
+  height: 6rem;
+  filter: saturate(80%) brightness(107%);
+}
+
+.closing-statement__bird--right {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 40rem) {
+  .closing-statement__row {
+    flex-direction: column;
+  }
+
+  .closing-statement__bird {
+    height: 4.5rem;
+  }
+}
+
 .closing-statement p {
   margin-bottom: var(--space-xs);
   font-family: var(--font-display);
@@ -101,7 +222,7 @@
 
 .closing-statement p:last-child {
   margin-top: var(--space-sm);
-  color: var(--color-text);
+  color: #6f72a0;
   font-weight: 600;
   font-style: normal;
 }

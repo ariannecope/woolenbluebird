@@ -3,6 +3,7 @@ import { getGatherings } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
 import GatheringCard from '../components/GatheringCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import bluebirdDrawing from './images/bluebirdfour.png'
 import './Gather.css'
 
 function Gather() {
@@ -12,19 +13,25 @@ function Gather() {
   return (
     <article className="gather">
       <header className="gather__intro">
-        <h1>Gather</h1>
-        <p className="gather__tagline">Where do I belong?</p>
-        <p>
-          Making doesn't have to happen alone. Some of it is even better when
-          it doesn't — a room full of people quietly working with their
-          hands, a table someone is teaching you to set, a circle where the
-          conversation moves at the same unhurried pace as the stitches.
-          Gather is about finding that kind of room, or starting one.
-        </p>
+        <div className="gather__intro-row">
+          <img src={bluebirdDrawing} alt="" className="gather__bird" />
+          <div className="gather__intro-text">
+            <h1>Gather</h1>
+            <p className="gather__tagline">Where do I belong?</p>
+            <p>
+              Making doesn't have to happen alone. Some of it is even better
+              when it doesn't — a room full of people quietly working with
+              their hands, a table someone is teaching you to set, a circle
+              where the conversation moves at the same unhurried pace as the
+              stitches. Gather is about finding that kind of room, or
+              starting one.
+            </p>
+          </div>
+        </div>
       </header>
 
       <section
-        className="content-section content-section--alt gather__section"
+        className="content-section content-section--alt gather__section gather__section--quilt"
         aria-labelledby="gather-kinds-heading"
       >
         <h2 id="gather-kinds-heading">What gathering could look like</h2>

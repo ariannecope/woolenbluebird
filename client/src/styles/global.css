@@ -38,7 +38,11 @@ h4 {
 }
 
 h1 {
-  font-size: var(--font-size-3xl);
+  font-family: "Tangerine", cursive;
+  font-weight: 700;
+  font-style: normal;
+  font-size: calc(var(--font-size-3xl) * 2);
+  margin-bottom: 0;
 }
 
 h2 {

@@ -1,6 +1,45 @@
 .gather__intro {
   max-width: var(--content-narrow-width);
+  margin-inline: auto;
   margin-bottom: var(--space-lg);
+}
+
+.gather__intro-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-md);
+}
+
+.gather__bird {
+  flex-shrink: 0;
+  width: auto;
+  height: 19.8rem;
+  filter: saturate(72.76%) brightness(121%);
+}
+
+.gather__intro-text {
+  min-width: 0;
+}
+
+.gather__intro-text h1 {
+  color: #6f72a0;
+}
+
+@media (max-width: 40rem) {
+  .gather__intro-row {
+    flex-direction: column;
+  }
+
+  .gather__bird {
+    height: 15.4rem;
+  }
+}
+
+.gather__intro-text h1,
+.gather__tagline {
+  text-align: left;
 }
 
 .gather__tagline {
@@ -12,7 +51,7 @@
   color: var(--color-text-muted);
 }
 
-.gather__intro > p:last-child {
+.gather__intro-text p:last-child {
   margin-top: var(--space-lg);
   margin-bottom: 0;
   font-size: var(--font-size-lg);
@@ -36,6 +75,37 @@
 
 .gather__section p:last-child {
   margin-bottom: 0;
+}
+
+.gather__section--quilt {
+  position: relative;
+  overflow: hidden;
+  outline: 1px dashed #b7cee3;
+  outline-offset: calc(-1 * var(--space-sm));
+}
+
+.gather__section--quilt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("./images/quilttwo-rotated.png");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(181%);
+}
+
+.gather__section--quilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(253, 251, 246, 0.88);
+}
+
+.gather__section--quilt > * {
+  position: relative;
+  z-index: 2;
 }
 
 .gather__kinds {

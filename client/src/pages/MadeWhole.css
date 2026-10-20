@@ -11,10 +11,15 @@
   min-width: 0;
 }
 
+.made-whole__intro-text h1 {
+  color: #6f72a0;
+}
+
 .made-whole__bird {
   flex-shrink: 0;
   width: auto;
-  height: 9.9rem;
+  height: 8.91rem;
+  filter: saturate(90%) brightness(110%);
 }
 
 @media (max-width: 40rem) {
@@ -23,7 +28,7 @@
   }
 
   .made-whole__bird {
-    height: 7.7rem;
+    height: 6.93rem;
   }
 }
 
@@ -45,22 +50,36 @@
  * to fake — better to just show the real thing.
  */
 .made-whole__quilt {
+  position: relative;
+  overflow: hidden;
   margin-block: var(--space-lg);
   padding: clamp(1.25rem, 4vw, var(--space-xl));
   background-color: var(--color-quilt-blue);
-  /* A translucent warm-white wash sits over the photo to fade it toward
-     the page's own background tone, like a sun-bleached textile, without
-     touching the cards painted on top of this element. */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* A translucent warm-white wash sits over the photo to fade it toward
+   the page's own background tone, like a sun-bleached textile, without
+   touching the cards painted on top of this element. Lives on its own
+   pseudo-element so `filter` can desaturate just the fabric photo without
+   dulling the (plain, opaque) story cards stacked above it. */
+.made-whole__quilt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-image:
     linear-gradient(rgba(253, 251, 246, 0.4), rgba(253, 251, 246, 0.4)),
     url("./images/quilt-fabric.png");
   background-size: 100% 100%, 330px 325px;
   background-repeat: no-repeat, repeat;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  filter: saturate(90%);
 }
 
 .made-whole__grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: var(--space-lg);

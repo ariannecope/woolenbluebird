@@ -1,0 +1,30 @@
+.featured-makers {
+  position: relative;
+  overflow: hidden;
+  outline: 1px dashed #b7cee3;
+  outline-offset: calc(-1 * var(--space-sm));
+}
+
+.featured-makers::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("../pages/images/quilttwo-rotated.png");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(181%);
+}
+
+.featured-makers::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(253, 251, 246, 0.88);
+}
+
+.featured-makers > * {
+  position: relative;
+  z-index: 2;
+}

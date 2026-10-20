@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import FeaturedStories from '../components/FeaturedStories.jsx'
 import FeaturedMakers from '../components/FeaturedMakers.jsx'
 import GatherPreview from '../components/GatherPreview.jsx'
+import nestDrawing from './images/nest.png'
+import bluebirdDrawing from './images/bluebirdthree.png'
 import './Home.css'
 
 function Home() {
@@ -26,10 +28,18 @@ function Home() {
         <h2 id="mission-heading" className="visually-hidden">
           Our Philosophy
         </h2>
-        <p className="mission__line">We make things because we are human.</p>
-        <p className="mission__line">We make to remember.</p>
-        <p className="mission__line">We make to survive.</p>
-        <p className="mission__line">We make to connect.</p>
+        <p className="mission__line">
+          We make things because we are <span className="mission__highlight">human</span>.
+        </p>
+        <p className="mission__line">
+          We make to <span className="mission__highlight">remember</span>.
+        </p>
+        <p className="mission__line">
+          We make to <span className="mission__highlight">survive</span>.
+        </p>
+        <p className="mission__line">
+          We make to <span className="mission__highlight">connect</span>.
+        </p>
         <p className="mission__line mission__line--emphasis">
           We make because sometimes creating something with our hands helps us find our way back
           to ourselves.
@@ -38,6 +48,8 @@ function Home() {
           <Link to="/made-whole">Explore Made Whole →</Link>
         </p>
       </section>
+
+      <img src={nestDrawing} alt="" className="home__nest" />
 
       <FeaturedStories />
 
@@ -59,10 +71,20 @@ function Home() {
       </section>
 
       <section className="closing-statement" aria-label="Closing statement">
-        <p>One story becomes another.</p>
-        <p>One maker introduces us to another.</p>
-        <p>One gathering becomes a community.</p>
-        <p>Thread by thread, we weave something together.</p>
+        <div className="closing-statement__row">
+          <img src={bluebirdDrawing} alt="" className="closing-statement__bird" />
+          <div className="closing-statement__text">
+            <p>One story becomes another.</p>
+            <p>One maker introduces us to another.</p>
+            <p>One gathering becomes a community.</p>
+            <p>Thread by thread, we weave something together.</p>
+          </div>
+          <img
+            src={bluebirdDrawing}
+            alt=""
+            className="closing-statement__bird closing-statement__bird--right"
+          />
+        </div>
       </section>
     </>
   )

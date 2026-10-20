@@ -13,10 +13,15 @@
   flex-shrink: 0;
   width: auto;
   height: 9.9rem;
+  filter: brightness(108%);
 }
 
 .maker-directory__intro-text {
   min-width: 0;
+}
+
+.maker-directory__intro-text h1 {
+  color: #6f72a0;
 }
 
 @media (max-width: 40rem) {

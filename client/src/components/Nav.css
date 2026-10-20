@@ -12,6 +12,17 @@
   padding-block: var(--space-md);
 }
 
+.site-header__brand-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.site-header__nest {
+  height: 2.25rem;
+  width: auto;
+}
+
 .site-header__brand {
   font-family: var(--font-display);
   font-size: var(--font-size-lg);

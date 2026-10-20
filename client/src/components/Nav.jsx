@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import nestImage from '../pages/images/nest.png'
 import './Nav.css'
 
 const links = [
@@ -14,9 +15,12 @@ function Nav() {
   return (
     <header className="site-header">
       <div className="container site-header__inner">
-        <NavLink to="/" className="site-header__brand">
-          Woolen Bluebird
-        </NavLink>
+        <div className="site-header__brand-group">
+          <img src={nestImage} alt="" className="site-header__nest" />
+          <NavLink to="/" className="site-header__brand">
+            Woolen Bluebird
+          </NavLink>
+        </div>
         <nav aria-label="Primary">
           <ul className="site-nav">
             {links.map((link) => (

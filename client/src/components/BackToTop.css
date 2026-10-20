@@ -1,0 +1,19 @@
+.back-to-top {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  margin: var(--space-lg) auto;
+  padding: 0;
+  background-image: url("../pages/images/bottomquilt.png");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  transform: scale(1.1);
+}
