@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import Layout from './components/Layout.jsx'
 import RequireAdmin from './components/RequireAdmin.jsx'
 import AdminLayout from './components/AdminLayout.jsx'
@@ -23,33 +24,36 @@ import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="made-whole" element={<MadeWhole />} />
-        <Route path="made-whole/:slug" element={<StoryDetail />} />
-        <Route path="makers" element={<MakerDirectory />} />
-        <Route path="makers/:slug" element={<MakerProfile />} />
-        <Route path="journal" element={<Journal />} />
-        <Route path="journal/:slug" element={<JournalEntry />} />
-        <Route path="gather" element={<Gather />} />
-        <Route path="about" element={<About />} />
-        <Route path="submit-story" element={<SubmitStory />} />
-        <Route path="submit-maker" element={<SubmitMaker />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-
-      <Route path="admin/login" element={<AdminLogin />} />
-      <Route element={<RequireAdmin />}>
-        <Route element={<AdminLayout />}>
-          <Route path="admin" element={<AdminHome />} />
-          <Route path="admin/story-submissions" element={<AdminStorySubmissionsList />} />
-          <Route path="admin/story-submissions/:id" element={<AdminStorySubmissionReview />} />
-          <Route path="admin/maker-submissions" element={<AdminMakerSubmissionsList />} />
-          <Route path="admin/maker-submissions/:id" element={<AdminMakerSubmissionReview />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="made-whole" element={<MadeWhole />} />
+          <Route path="made-whole/:slug" element={<StoryDetail />} />
+          <Route path="makers" element={<MakerDirectory />} />
+          <Route path="makers/:slug" element={<MakerProfile />} />
+          <Route path="journal" element={<Journal />} />
+          <Route path="journal/:slug" element={<JournalEntry />} />
+          <Route path="gather" element={<Gather />} />
+          <Route path="about" element={<About />} />
+          <Route path="submit-story" element={<SubmitStory />} />
+          <Route path="submit-maker" element={<SubmitMaker />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-      </Route>
-    </Routes>
+
+        <Route path="admin/login" element={<AdminLogin />} />
+        <Route element={<RequireAdmin />}>
+          <Route element={<AdminLayout />}>
+            <Route path="admin" element={<AdminHome />} />
+            <Route path="admin/story-submissions" element={<AdminStorySubmissionsList />} />
+            <Route path="admin/story-submissions/:id" element={<AdminStorySubmissionReview />} />
+            <Route path="admin/maker-submissions" element={<AdminMakerSubmissionsList />} />
+            <Route path="admin/maker-submissions/:id" element={<AdminMakerSubmissionReview />} />
+          </Route>
+        </Route>
+      </Routes>
+    </>
   )
 }
 

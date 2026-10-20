@@ -218,3 +218,63 @@ select:focus-visible {
   padding: 0.15rem 0.6rem;
   margin-bottom: var(--space-md);
 }
+
+/* Shared entrance for the bluebird/nest drawings scattered across the
+   site (Home, About, Made Whole, Journal, Gather, Maker Directory) — a
+   gentle fade paired with a slight downward settle, like the bird just
+   landed on the page. .bird-landing alone is the hidden "ready" state;
+   useRevealOnScroll (client/src/hooks/useRevealOnScroll.js) adds
+   .bird-landing--in the first time the image scrolls into view, which
+   is what actually plays the animation. Keying this to visibility
+   rather than mount time matters for anything below the fold — on
+   mount, an image far down the page would otherwise finish fading in
+   long before a viewer scrolls down to see it. */
+.bird-landing {
+  opacity: 0;
+  translate: 0 -10px;
+}
+
+.bird-landing--in {
+  animation: bird-landing-in 0.8s ease-out forwards;
+}
+
+@keyframes bird-landing-in {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bird-landing {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .bird-landing--in {
+    animation: none;
+  }
+}
+
+/* Gentle fade-in for each page's main heading, on every page but Home
+   (whose hero title already has its own, more elaborate settle-in). No
+   scroll trigger needed here since these headings always sit at the top
+   of the page, visible immediately on load. */
+.page-heading-fade-in {
+  animation: page-heading-fade-in 0.6s ease-out both;
+}
+
+@keyframes page-heading-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-heading-fade-in {
+    animation: none;
+  }
+}

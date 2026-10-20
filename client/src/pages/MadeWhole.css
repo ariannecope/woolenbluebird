@@ -39,14 +39,19 @@
   color: var(--color-text-muted);
 }
 
+.made-whole__cta {
+  margin-top: var(--space-md);
+}
+
 /*
- * The quilt lives in the backdrop, not the cards: an actual scan of a
- * faded vintage calico fabric swatch (client/src/pages/images/quilt-fabric.png)
- * tiled behind the whole collection, with generous room to breathe around
- * and between the cards. The cards themselves stay plain; they're pieces
- * laid on top of the fabric, not fabric themselves. A real photo was used
- * instead of a drawn/procedural pattern because the irregular weave,
- * faded dye, and print imperfections of actual fabric aren't convincing
+ * The quilt lives in the backdrop, not the cards: an actual photo of a
+ * pieced star-block quilt (client/src/pages/images/quiltone.png) shown
+ * whole and scaled up behind the collection, rather than tiled — tiling
+ * chopped the piecing into a repeating grid that read as patched-together
+ * rather than one quilt. The cards themselves stay plain; they're pieces
+ * laid on top of the quilt, not quilt themselves. A real photo was used
+ * instead of a drawn/procedural pattern because the irregular piecing,
+ * faded dye, and print imperfections of an actual quilt aren't convincing
  * to fake — better to just show the real thing.
  */
 .made-whole__quilt {
@@ -71,10 +76,11 @@
   z-index: 0;
   background-image:
     linear-gradient(rgba(253, 251, 246, 0.4), rgba(253, 251, 246, 0.4)),
-    url("./images/quilt-fabric.png");
-  background-size: 100% 100%, 330px 325px;
-  background-repeat: no-repeat, repeat;
-  filter: saturate(90%);
+    url("./images/quiltone.png");
+  background-size: 100% 100%, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  filter: saturate(90%) sepia(5%) brightness(95%);
 }
 
 .made-whole__grid {

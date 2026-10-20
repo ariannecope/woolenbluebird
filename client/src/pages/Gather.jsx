@@ -3,10 +3,12 @@ import { getGatherings } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
 import GatheringCard from '../components/GatheringCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import bluebirdDrawing from './images/bluebirdfour.png'
 import './Gather.css'
 
 function Gather() {
+  const [birdRef, birdRevealed] = useRevealOnScroll()
   const { status, data, error, retry } = useAsync(() => getGatherings(), [])
   const gatherings = data?.data ?? []
 
@@ -14,9 +16,14 @@ function Gather() {
     <article className="gather">
       <header className="gather__intro">
         <div className="gather__intro-row">
-          <img src={bluebirdDrawing} alt="" className="gather__bird" />
+          <img
+            ref={birdRef}
+            src={bluebirdDrawing}
+            alt=""
+            className={`gather__bird bird-landing${birdRevealed ? ' bird-landing--in' : ''}`}
+          />
           <div className="gather__intro-text">
-            <h1>Gather</h1>
+            <h1 className="page-heading-fade-in">Gather</h1>
             <p className="gather__tagline">Where do I belong?</p>
             <p>
               Making doesn't have to happen alone. Some of it is even better
@@ -126,10 +133,7 @@ function Gather() {
           natural fiber, mend clothing, and learn traditional skills
           together.
         </p>
-        <p>
-          None of that exists yet. It's the direction Woolen Bluebird is
-          walking toward.
-        </p>
+
       </section>
     </article>
   )

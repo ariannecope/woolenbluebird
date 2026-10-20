@@ -1,14 +1,16 @@
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { getStories } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
 import { STORY_TYPE_FILTERS } from '../lib/storyTypes.js'
 import FilterPills from '../components/FilterPills.jsx'
 import StoryCard from '../components/StoryCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import bluebirdDrawing from './images/bluebirdthree.png'
 import './MadeWhole.css'
 
 function MadeWhole() {
+  const [birdRef, birdRevealed] = useRevealOnScroll()
   const [searchParams] = useSearchParams()
   const typeFilter = searchParams.get('type') ?? ''
   const isKnownFilter = STORY_TYPE_FILTERS.some((filter) => filter.value === typeFilter)
@@ -24,11 +26,21 @@ function MadeWhole() {
   return (
     <section className="made-whole">
       <header className="made-whole__intro">
-        <img src={bluebirdDrawing} alt="" className="made-whole__bird" />
+        <img
+          ref={birdRef}
+          src={bluebirdDrawing}
+          alt=""
+          className={`made-whole__bird bird-landing${birdRevealed ? ' bird-landing--in' : ''}`}
+        />
         <div className="made-whole__intro-text">
-          <h1>Made Whole</h1>
+          <h1 className="page-heading-fade-in">Made Whole</h1>
           <p className="made-whole__tagline">
             A collection of human stories stitched together by making.
+          </p>
+          <p className="made-whole__cta">
+            <Link to="/submit-story" className="button button--primary">
+              Share Your Story
+            </Link>
           </p>
         </div>
       </header>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import aboutPhoto from './images/about.jpg'
 import nestDrawing from './images/nest.png'
 import './About.css'
@@ -16,10 +17,13 @@ import './About.css'
  */
 
 function About() {
+  const [linksRef, linksSettled] = useRevealOnScroll()
+  const [nestRef, nestRevealed] = useRevealOnScroll()
+
   return (
     <article className="about">
       <header className="about__opening">
-        <h1>Woolen Bluebird</h1>
+        <h1 className="page-heading-fade-in">Woolen Bluebird</h1>
         <p className="about__tagline">
           Connecting people through the healing power of making
         </p>
@@ -205,7 +209,12 @@ function About() {
         </p>
       </section>
 
-      <img src={nestDrawing} alt="" className="about__nest" />
+      <img
+        ref={nestRef}
+        src={nestDrawing}
+        alt=""
+        className={`about__nest bird-landing${nestRevealed ? ' bird-landing--in' : ''}`}
+      />
 
       <section
         className="content-section content-section--alt about__section"
@@ -248,7 +257,10 @@ function About() {
           this matters.
         </p>
         <p>Whatever brought you here, there's a piece of the quilt for you.</p>
-        <ul className="about__links">
+        <ul
+          ref={linksRef}
+          className={`about__links${linksSettled ? ' about__links--settled' : ''}`}
+        >
           <li>
             <Link to="/made-whole">Read a story in Made Whole</Link>
           </li>

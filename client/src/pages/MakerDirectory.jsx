@@ -5,10 +5,12 @@ import FilterPills from '../components/FilterPills.jsx'
 import LocationFilter from '../components/LocationFilter.jsx'
 import MakerCard from '../components/MakerCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import bluebirdDrawing from './images/bluebirdtwo.png'
 import './MakerDirectory.css'
 
 function MakerDirectory() {
+  const [birdRef, birdRevealed] = useRevealOnScroll()
   const [searchParams] = useSearchParams()
   const categoryFilter = searchParams.get('category') ?? ''
   const locationFilter = searchParams.get('location') ?? ''
@@ -32,9 +34,14 @@ function MakerDirectory() {
     <section className="maker-directory">
       <header className="maker-directory__intro">
         <div className="maker-directory__intro-row">
-          <img src={bluebirdDrawing} alt="" className="maker-directory__bird" />
+          <img
+            ref={birdRef}
+            src={bluebirdDrawing}
+            alt=""
+            className={`maker-directory__bird bird-landing${birdRevealed ? ' bird-landing--in' : ''}`}
+          />
           <div className="maker-directory__intro-text">
-            <h1>The Maker Directory</h1>
+            <h1 className="page-heading-fade-in">The Maker Directory</h1>
             <p className="maker-directory__tagline">
               Find the people who make, teach, gather, repair, grow, and share.
             </p>

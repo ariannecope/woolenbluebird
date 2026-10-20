@@ -123,7 +123,7 @@ function SubmitStory() {
   if (status === 'success') {
     return (
       <section className="submission-page submission-page--success">
-        <h1>Thank you for sharing your story.</h1>
+        <h1 className="page-heading-fade-in">Thank you for sharing your story.</h1>
         <p>
           Your story has been received. Every submission is read personally — we don't publish
           automatically, and submitting doesn't guarantee publication, but we're grateful you
@@ -140,7 +140,7 @@ function SubmitStory() {
 
   return (
     <section className="submission-page">
-      <h1>Share Your Story</h1>
+      <h1 className="page-heading-fade-in">Share Your Story</h1>
 
       <div className="submission-page__intro">
         <p>

@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.about__opening h1 {
+  color: #6f72a0;
+}
+
 .about__opening + .content-section {
   padding-top: var(--space-lg);
 }
@@ -20,6 +24,53 @@
   font-style: italic;
   font-size: var(--font-size-xl);
   color: var(--color-text-muted);
+}
+
+/* A dashed "stitch" draws itself in under the heading and tagline on
+   load, like a line of hand-stitching being sewn — revealed left to
+   right via clip-path (rather than scaled) so the dashes themselves
+   never stretch. The tagline's line starts a beat after the heading's,
+   as if one stitch line follows the other. */
+.about__opening h1::after {
+  content: '';
+  display: block;
+  width: 10rem;
+  margin: var(--space-xs) auto 0;
+  border-bottom: 2px dashed var(--quilt-stitch-color);
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  animation: about-stitch-in 0.9s ease-out forwards;
+}
+
+.about__tagline::after {
+  content: '';
+  display: block;
+  width: 7rem;
+  margin: var(--space-sm) auto 0;
+  border-bottom: 2px dashed var(--quilt-stitch-color);
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  animation: about-stitch-in 0.9s ease-out 0.35s forwards;
+}
+
+@keyframes about-stitch-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__opening h1::after,
+  .about__tagline::after {
+    animation: none;
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .about__story-block {
@@ -144,6 +195,10 @@
   margin-bottom: var(--space-md);
 }
 
+#larger-idea-heading {
+  color: #6a6f9e;
+}
+
 .about__portrait {
   max-width: 20rem;
   margin: 0 auto var(--space-lg);
@@ -248,4 +303,37 @@
   padding: 0;
   list-style: none;
   font-size: var(--font-size-lg);
+}
+
+/* Each link settles into place, one after another, the first time this
+   list scrolls into view (About.jsx watches it with an IntersectionObserver
+   and adds --settled once, so it never replays on later scrolls). Hidden
+   by default since JS is required for this SPA to render at all, so
+   there's no no-JS fallback to protect. */
+.about__links li {
+  opacity: 0;
+  translate: 0 14px;
+}
+
+.about__links--settled li {
+  animation: about-links-settle 0.5s ease-out forwards;
+}
+
+.about__links--settled li:nth-child(1) { animation-delay: 0s; }
+.about__links--settled li:nth-child(2) { animation-delay: 0.12s; }
+.about__links--settled li:nth-child(3) { animation-delay: 0.24s; }
+.about__links--settled li:nth-child(4) { animation-delay: 0.36s; }
+
+@keyframes about-links-settle {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__links li {
+    opacity: 1;
+    translate: 0 0;
+  }
 }

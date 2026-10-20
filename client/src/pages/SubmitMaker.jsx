@@ -129,7 +129,7 @@ function SubmitMaker() {
   if (status === 'success') {
     return (
       <section className="submission-page submission-page--success">
-        <h1>Thank you for reaching out.</h1>
+        <h1 className="page-heading-fade-in">Thank you for reaching out.</h1>
         <p>
           Your information has been received and will be reviewed by Woolen Bluebird. We don't
           add anyone to the directory automatically — every submission is read personally, and
@@ -146,7 +146,7 @@ function SubmitMaker() {
 
   return (
     <section className="submission-page">
-      <h1>Join the Maker Directory</h1>
+      <h1 className="page-heading-fade-in">Join the Maker Directory</h1>
 
       <div className="submission-page__intro">
         <p>

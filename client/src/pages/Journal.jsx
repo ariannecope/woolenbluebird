@@ -2,19 +2,26 @@ import { getStories } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
 import StoryCard from '../components/StoryCard.jsx'
 import { LoadingState, ErrorState, EmptyState } from '../components/StatusMessage.jsx'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import bluebirdDrawing from './images/bluebirdone.png'
 import './Journal.css'
 
 function Journal() {
+  const [birdRef, birdRevealed] = useRevealOnScroll()
   const { status, data, error, retry } = useAsync(() => getStories({ type: 'journal' }), [])
   const entries = data?.data ?? []
 
   return (
     <section className="journal">
       <header className="journal__intro">
-        <img src={bluebirdDrawing} alt="" className="journal__bird" />
+        <img
+          ref={birdRef}
+          src={bluebirdDrawing}
+          alt=""
+          className={`journal__bird bird-landing${birdRevealed ? ' bird-landing--in' : ''}`}
+        />
         <div className="journal__intro-text">
-          <h1>Journal</h1>
+          <h1 className="page-heading-fade-in">Journal</h1>
           <p className="journal__tagline">
             Arianne's personal writing space — reflections, essays, and notes on building Woolen
             Bluebird. Where Made Whole tells the wider community's stories, this is one voice,

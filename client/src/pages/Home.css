@@ -42,8 +42,28 @@
 .hero h1 {
   margin-bottom: calc(-1 * var(--space-md));
   font-size: calc(var(--font-size-3xl) * 2.3);
+  color: #1b2a4a;
+  opacity: 0;
+  translate: 0 -16px;
+  scale: 1.04;
+  animation: hero-title-settle 0.8s ease-out forwards;
 }
 
+@keyframes hero-title-settle {
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+/* The subtitle unrolls in left to right after the title settles, like a
+   strip of fabric unrolling — revealed via clip-path (not scaled) so the
+   italic text never stretches, with the same fade used for the title.
+   The clip region is held open past the box's own edges on the top,
+   bottom, and left (matching ::before's -1.25rem bleed below) so only
+   the sweeping right edge is a hard line — the blurred backdrop keeps
+   its soft, blended falloff on every other side throughout and at rest. */
 .hero__tagline {
   position: relative;
   isolation: isolate;
@@ -56,15 +76,39 @@
   font-style: italic;
   font-size: var(--font-size-xl);
   color: var(--color-text-muted);
+  opacity: 0;
+  clip-path: inset(-1.25rem 100% -1.25rem -1.25rem);
+  animation: hero-tagline-unroll 0.9s ease-out 0.5s forwards;
+}
+
+@keyframes hero-tagline-unroll {
+  to {
+    opacity: 1;
+    clip-path: inset(-1.25rem -1.25rem -1.25rem -1.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1,
+  .hero__tagline {
+    animation: none;
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  .hero__tagline {
+    clip-path: inset(-1.25rem -1.25rem -1.25rem -1.25rem);
+  }
 }
 
 .hero__tagline::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -0.75rem;
-  background: rgba(220, 232, 242, 0.85);
-  filter: blur(16px);
+  inset: -1.25rem;
+  background: rgba(220, 232, 242, 0.65);
+  filter: blur(26px);
 }
 
 .hero__actions {
@@ -156,12 +200,14 @@
   padding: var(--space-2xl) var(--space-lg);
   background-color: #49433c;
   border-radius: var(--radius-lg);
-  color: var(--color-warm-white);
+  /* A touch cooler than --color-warm-white (#fdfbf6), scoped to just this
+     section rather than changing that shared token elsewhere. */
+  color: #eef3f8;
   text-align: center;
 }
 
 .share-cta h2 {
-  color: var(--color-warm-white);
+  color: #eef3f8;
 }
 
 .share-cta__inner {
@@ -171,6 +217,13 @@
 
 .share-cta .button {
   margin-top: var(--space-md);
+  /* Match the section's pale-blue text color (#eef3f8 above) instead of
+     the sitewide --color-warm-white used by other --on-dark buttons. */
+  background-color: #eef3f8;
+}
+
+.share-cta .button:hover {
+  background-color: #dde7f0;
 }
 
 .closing-statement {
@@ -200,6 +253,7 @@
 
 .closing-statement__bird--right {
   transform: scaleX(-1);
+  animation-delay: 0.25s;
 }
 
 @media (max-width: 40rem) {

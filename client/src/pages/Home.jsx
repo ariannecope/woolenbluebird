@@ -2,11 +2,15 @@ import { Link } from 'react-router-dom'
 import FeaturedStories from '../components/FeaturedStories.jsx'
 import FeaturedMakers from '../components/FeaturedMakers.jsx'
 import GatherPreview from '../components/GatherPreview.jsx'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import nestDrawing from './images/nest.png'
 import bluebirdDrawing from './images/bluebirdthree.png'
 import './Home.css'
 
 function Home() {
+  const [nestRef, nestRevealed] = useRevealOnScroll()
+  const [closingRef, closingRevealed] = useRevealOnScroll()
+
   return (
     <>
       <section className="hero">
@@ -49,7 +53,12 @@ function Home() {
         </p>
       </section>
 
-      <img src={nestDrawing} alt="" className="home__nest" />
+      <img
+        ref={nestRef}
+        src={nestDrawing}
+        alt=""
+        className={`home__nest bird-landing${nestRevealed ? ' bird-landing--in' : ''}`}
+      />
 
       <FeaturedStories />
 
@@ -71,8 +80,12 @@ function Home() {
       </section>
 
       <section className="closing-statement" aria-label="Closing statement">
-        <div className="closing-statement__row">
-          <img src={bluebirdDrawing} alt="" className="closing-statement__bird" />
+        <div className="closing-statement__row" ref={closingRef}>
+          <img
+            src={bluebirdDrawing}
+            alt=""
+            className={`closing-statement__bird bird-landing${closingRevealed ? ' bird-landing--in' : ''}`}
+          />
           <div className="closing-statement__text">
             <p>One story becomes another.</p>
             <p>One maker introduces us to another.</p>
@@ -82,7 +95,7 @@ function Home() {
           <img
             src={bluebirdDrawing}
             alt=""
-            className="closing-statement__bird closing-statement__bird--right"
+            className={`closing-statement__bird closing-statement__bird--right bird-landing${closingRevealed ? ' bird-landing--in' : ''}`}
           />
         </div>
       </section>
