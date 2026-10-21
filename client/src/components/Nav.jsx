@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle.jsx'
 import nestImage from '../pages/images/nest.png'
 import './Nav.css'
 
@@ -37,6 +38,7 @@ function Nav() {
             ))}
           </ul>
         </nav>
+        <ThemeToggle />
       </div>
     </header>
   )

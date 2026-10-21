@@ -1,3 +1,8 @@
+#featured-makers-heading {
+  font-family: "Tangerine", cursive;
+  font-size: calc(var(--font-size-2xl) * 2);
+}
+
 .featured-makers {
   position: relative;
   overflow: hidden;
@@ -27,4 +32,17 @@
 .featured-makers > * {
   position: relative;
   z-index: 2;
+}
+
+/* The backdrop is a light photo wash regardless of theme (see ::after
+   above), so in dark mode the heading/tagline/button would otherwise
+   pick up the theme's light text color and disappear against it. Scoped
+   to dark mode only, since in light mode these already match var(--color-ink)
+   (heading, button) or are meant to look different (the tagline's muted
+   tone). MakerCard text is left alone — it sits on --color-surface, which
+   already goes dark correctly in dark mode. */
+:root[data-theme="dark"] .featured-makers #featured-makers-heading,
+:root[data-theme="dark"] .featured-makers .content-section__tagline,
+:root[data-theme="dark"] .featured-makers .button--secondary {
+  color: var(--color-ink);
 }

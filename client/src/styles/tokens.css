@@ -78,3 +78,31 @@
   /* Focus */
   --focus-ring: 3px solid var(--color-blue-accent);
 }
+
+/*
+  Dark theme — toggled via the moon/sun button in the nav (Nav.jsx,
+  useTheme.js), which sets data-theme on <html>. Shifts the semantic
+  surface/text/accent tokens toward darker blues; left all the
+  page-specific hardcoded decorative colors alone (quilt backdrops, the
+  hero photo wash, a few accent headings like About's periwinkle) since
+  those are literal photos/washes tuned for a light backdrop, not part of
+  the token system — a few sections will still read "light" against the
+  dark chrome until those get their own pass.
+*/
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #10161f;
+  --color-bg-alt: #161e2a;
+  --color-surface: #283850;
+  --color-text: #dce6f2;
+  --color-text-muted: #93a8c0;
+  --color-border: #2b3747;
+  --color-accent: #6fa3d1;
+  --color-accent-strong: #8fbfe6;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.5);
+
+  --focus-ring: 3px solid var(--color-accent);
+}

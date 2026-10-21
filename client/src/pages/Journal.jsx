@@ -24,8 +24,7 @@ function Journal() {
           <h1 className="page-heading-fade-in">Journal</h1>
           <p className="journal__tagline">
             Arianne's personal writing space — reflections, essays, and notes on building Woolen
-            Bluebird. Where Made Whole tells the wider community's stories, this is one voice,
-            written as it happens.
+            Bluebird. Where Made Whole tells the wider community's stories, this is Arianne's journey of healing through making and her reflections on interviewing other makers.
           </p>
         </div>
       </header>

@@ -46,6 +46,17 @@
   background-color: var(--color-warm-white);
 }
 
+/* quilt-b/c/d's cream/warm-white frames above are a light-mode-only
+   variation — hardcoded, not theme-aware, so they'd otherwise stay light
+   in dark mode while quilt-a's default (--color-surface) goes dark. Fall
+   back to that same themed surface here so every card's frame matches in
+   dark mode. */
+:root[data-theme="dark"] .story-card.quilt-b,
+:root[data-theme="dark"] .story-card.quilt-c,
+:root[data-theme="dark"] .story-card.quilt-d {
+  background-color: var(--color-surface);
+}
+
 .story-card__panel {
   display: flex;
   flex-direction: column;

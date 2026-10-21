@@ -65,6 +65,8 @@
 
 .gather__section h2 {
   margin-bottom: var(--space-md);
+  font-family: "Tangerine", cursive;
+  font-size: calc(var(--font-size-2xl) * 2);
 }
 
 .gather__section p {
@@ -105,13 +107,18 @@
 
 .gather__section--quilt > * {
   position: relative;
+  /* This section's backdrop is a photo + a near-white wash, independent
+     of the theme — stays light even in dark mode. var(--color-ink) (not
+     --color-text) is used here on purpose: it's the one color token not
+     redefined under [data-theme="dark"], so this text stays dark and
+     readable against that backdrop on either theme. */
+  color: var(--color-ink);
   z-index: 2;
 }
 
 .gather__kinds {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--color-text);
 }
 
 .gather__list {

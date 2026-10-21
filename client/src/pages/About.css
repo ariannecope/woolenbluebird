@@ -189,10 +189,27 @@
 
 .about__section--quilt > * {
   position: relative;
+  /* Same light-backdrop-regardless-of-theme pattern as Gather's quilt
+     section (see Gather.css) — pin text to the one color token not
+     redefined under [data-theme="dark"], so it stays dark and readable
+     against this wash on either theme. */
+  color: var(--color-ink);
+}
+
+.about__section--quilt .about__pullquote p {
+  color: var(--color-ink);
 }
 
 .about__section h2 {
   margin-bottom: var(--space-md);
+  font-family: "Tangerine", cursive;
+  font-size: calc(var(--font-size-2xl) * 2);
+}
+
+#larger-idea-heading,
+#invitation-heading {
+  font-family: "Tangerine", cursive;
+  font-size: calc(var(--font-size-2xl) * 2);
 }
 
 #larger-idea-heading {

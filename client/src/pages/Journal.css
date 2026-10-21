@@ -9,7 +9,7 @@
 .journal__bird {
   flex-shrink: 0;
   width: auto;
-  height: 9.9rem;
+  height: 10.89rem;
 }
 
 .journal__intro-text {
@@ -33,6 +33,44 @@
   }
 
   .journal__bird {
-    height: 7.7rem;
+    height: 8.47rem;
   }
+}
+
+/* Same quilt-backdrop treatment as Gather/FeaturedMakers/About's story
+   block — a photo + a near-white wash behind the cards. Uses the
+   rotated (landscape) quilttwo image, same as those other wide
+   sections, so `cover` crops as little of the quilt as possible instead
+   of cutting deep into a portrait photo to fill a wide row of cards. */
+.journal .card-grid {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.25rem, 4vw, var(--space-xl));
+  outline: 1px dashed #b7cee3;
+  outline-offset: calc(-1 * var(--space-sm));
+  border-radius: var(--radius-lg);
+}
+
+.journal .card-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("./images/quilttwo-rotated.png");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(181%);
+}
+
+.journal .card-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(253, 251, 246, 0.88);
+}
+
+.journal .card-grid > * {
+  position: relative;
+  z-index: 2;
 }

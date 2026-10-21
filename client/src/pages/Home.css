@@ -40,6 +40,13 @@
 }
 
 .hero h1 {
+  position: relative;
+  /* Both the title and the tagline below are position:relative siblings
+     (see .hero > * above), so without this they'd stack in DOM order —
+     the tagline (and its blurred glow backdrop, which bleeds upward
+     past its own box) would paint over the title's negative margin-bottom
+     instead of under it. */
+  z-index: 1;
   margin-bottom: calc(-1 * var(--space-md));
   font-size: calc(var(--font-size-3xl) * 2.3);
   color: #1b2a4a;
@@ -88,6 +95,14 @@
   }
 }
 
+/* The hero's own backdrop (photo + cream wash) stays light regardless of
+   theme, so dark mode's lighter --color-text-muted reads too pale against
+   it — a couple shades darker, reusing the same dusky blue already used
+   for stitch lines elsewhere (--quilt-stitch-color). */
+:root[data-theme="dark"] .hero__tagline {
+  color: var(--quilt-stitch-color);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero h1,
   .hero__tagline {
@@ -100,6 +115,12 @@
   .hero__tagline {
     clip-path: inset(-1.25rem -1.25rem -1.25rem -1.25rem);
   }
+
+  .hero__tagline::after {
+    animation: none;
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .hero__tagline::before {
@@ -109,6 +130,34 @@
   inset: -1.25rem;
   background: rgba(220, 232, 242, 0.65);
   filter: blur(26px);
+}
+
+/* A dashed stitch line draws itself in under the subtitle, same approach
+   as About's heading/tagline (About.css) — revealed left to right via
+   clip-path while fading in, so the dashes never stretch. Starts once
+   the subtitle above finishes its own unroll (0.5s delay + 0.9s duration
+   = 1.4s), so the sequence reads as title settles, then subtitle
+   unrolls, then the stitch line is sewn in underneath. As a normal
+   (non-positioned) part of the tagline's own flow, it paints above the
+   glow backdrop above (z-index: -1) and over the hero's faded wash. */
+.hero__tagline::after {
+  content: '';
+  display: block;
+  width: 8.75rem;
+  margin: var(--space-sm) auto 0;
+  /* Same dusky periwinkle as About's "larger idea" heading (#6a6f9e),
+     rather than --quilt-stitch-color used for stitching elsewhere. */
+  border-bottom: 2px dashed #6a6f9e;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  animation: hero-stitch-in 0.9s ease-out 1.4s forwards;
+}
+
+@keyframes hero-stitch-in {
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .hero__actions {
@@ -145,11 +194,28 @@
   color: var(--color-accent-strong);
 }
 
+/* This button's own fill stays a fixed pale blue regardless of theme
+   (above), so in dark mode it needs its text pinned to the untouched
+   ink token too, or it inherits the theme's light text color and
+   disappears against that light fill. */
+:root[data-theme="dark"] .hero__actions .button--secondary,
+:root[data-theme="dark"] .hero__actions .button--secondary:hover {
+  color: var(--color-ink);
+}
+
 .mission {
   max-width: var(--content-narrow-width);
   margin-inline: auto;
   padding-block: var(--space-2xl);
   text-align: center;
+}
+
+/* FeaturedStories has no CSS file of its own (it only uses shared
+   .content-section classes), so its heading is scoped here instead —
+   this is the only page that renders it. */
+#featured-stories-heading {
+  font-family: "Tangerine", cursive;
+  font-size: calc(var(--font-size-2xl) * 2);
 }
 
 .mission__line {
@@ -208,6 +274,8 @@
 
 .share-cta h2 {
   color: #eef3f8;
+  font-family: "Tangerine", cursive;
+  font-size: calc(var(--font-size-2xl) * 2);
 }
 
 .share-cta__inner {

@@ -51,3 +51,40 @@
   flex-direction: column;
   gap: var(--space-md);
 }
+
+/* Same quilt-backdrop treatment as Journal's card grid (Journal.css) —
+   a photo + a near-white wash behind the cards. Uses the rotated
+   (landscape) quiltfive image so `cover` crops as little of the quilt
+   squares as possible to fill this wide row of cards, rather than
+   zooming into a portrait photo more than necessary. */
+.maker-directory .card-grid {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.25rem, 4vw, var(--space-xl));
+  outline: 1px dashed #b7cee3;
+  outline-offset: calc(-1 * var(--space-sm));
+  border-radius: var(--radius-lg);
+}
+
+.maker-directory .card-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("./images/quiltfive-rotated.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.maker-directory .card-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(253, 251, 246, 0.88);
+}
+
+.maker-directory .card-grid > * {
+  position: relative;
+  z-index: 2;
+}

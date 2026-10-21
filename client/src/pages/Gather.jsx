@@ -43,8 +43,7 @@ function Gather() {
       >
         <h2 id="gather-kinds-heading">What gathering could look like</h2>
         <p>
-          Not all of this exists yet. Some of it might never exist in exactly
-          this form. But this is the shape Woolen Bluebird hopes to help
+          Not all of this exists yet. But this is the shape Woolen Bluebird hopes to help
           people find, or build for themselves:
         </p>
         <p className="gather__kinds">
