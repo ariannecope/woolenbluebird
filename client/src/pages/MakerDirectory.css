@@ -53,10 +53,9 @@
 }
 
 /* Same quilt-backdrop treatment as Journal's card grid (Journal.css) —
-   a photo + a near-white wash behind the cards. Uses the rotated
-   (landscape) quiltfive image so `cover` crops as little of the quilt
-   squares as possible to fill this wide row of cards, rather than
-   zooming into a portrait photo more than necessary. */
+   a photo + a near-white wash behind the cards. bottomquilt.png is
+   already landscape, so `cover` crops very little of it to fill this
+   wide row of cards. */
 .maker-directory .card-grid {
   position: relative;
   overflow: hidden;
@@ -71,7 +70,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("./images/quiltfive-rotated.png");
+  background-image: url("./images/bottomquilt.png");
   background-size: cover;
   background-position: center;
 }
@@ -81,7 +80,9 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(253, 251, 246, 0.88);
+  /* Wash opacity dropped ~20% (0.88 -> 0.7) so more of the original
+     quilt photo shows through. */
+  background: rgba(253, 251, 246, 0.7);
 }
 
 .maker-directory .card-grid > * {

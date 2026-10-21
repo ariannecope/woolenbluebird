@@ -78,7 +78,7 @@ function About() {
         </p>
         <p>
           The needles moved back and forth. Left, right. Left, right. Again and
-          again. That bilateral rhythm gave my my nervous system something
+          again. That bilateral rhythm gave my nervous system something
           steady to follow as I healed from PTSD.
         </p>
         <p>
@@ -90,7 +90,7 @@ function About() {
         </p>
         <p>
           The process restored me— caring for a living thing, washing and
-          carding the wool, spinning it into soft skeins, and then knitting or weaving something beautiful with my own hands.
+          carding the wool, spinning it into soft skeins, and then knitting or weaving something beautiful from it with my own hands.
         </p>
         <p>
           I was broken by the dark actions of other human beings. Working with
