@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   gap: var(--space-md);
 }
 
@@ -37,10 +36,6 @@
   }
 }
 
-.gather__intro-text h1,
-.gather__tagline {
-  text-align: left;
-}
 
 .gather__tagline {
   margin-top: var(--space-sm);

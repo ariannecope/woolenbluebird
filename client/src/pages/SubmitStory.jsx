@@ -17,6 +17,7 @@ const INITIAL_FORM = {
   email: '',
   title: '',
   story: '',
+  photo: '',
   website: '',
   instagram: '',
   facebook: '',
@@ -39,7 +40,7 @@ function validate(form) {
   if (!form.title.trim()) errors.title = 'Please enter a title for your story.'
   if (!form.story.trim()) errors.story = 'Please share your story.'
 
-  for (const field of ['website', 'instagram', 'facebook', 'other']) {
+  for (const field of ['photo', 'website', 'instagram', 'facebook', 'other']) {
     const value = form[field].trim()
     if (value && !isLikelyUrl(value)) {
       errors[field] = 'Please enter a valid link.'
@@ -104,6 +105,7 @@ function SubmitStory() {
         title: form.title.trim(),
         story: form.story.trim(),
         craftCategory: selectedCategories.length ? selectedCategories.join(', ') : undefined,
+        photo: normalizeUrl(form.photo) || undefined,
         website: normalizeUrl(form.website) || undefined,
         socialLinks: Object.keys(socialLinks).length ? socialLinks : undefined,
         permissionToContact: form.permissionToContact,
@@ -252,6 +254,28 @@ function SubmitStory() {
               aria-describedby={fieldErrors.story ? 'story-error' : undefined}
             />
             <FieldError id="story-error" message={fieldErrors.story} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="photo" className="field__label">
+              Photo URL
+            </label>
+            <p className="field__hint">
+              A link to a photo you'd like to go with your story, if you have one hosted
+              somewhere (your own site, Google Drive, etc.) — optional.
+            </p>
+            <input
+              id="photo"
+              name="photo"
+              type="url"
+              placeholder="example.com/your-photo.jpg"
+              value={form.photo}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              aria-invalid={fieldErrors.photo ? 'true' : undefined}
+              aria-describedby={fieldErrors.photo ? 'photo-error' : undefined}
+            />
+            <FieldError id="photo-error" message={fieldErrors.photo} />
           </div>
         </fieldset>
 

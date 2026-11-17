@@ -20,6 +20,8 @@ import AdminStorySubmissionsList from './pages/AdminStorySubmissionsList.jsx'
 import AdminStorySubmissionReview from './pages/AdminStorySubmissionReview.jsx'
 import AdminMakerSubmissionsList from './pages/AdminMakerSubmissionsList.jsx'
 import AdminMakerSubmissionReview from './pages/AdminMakerSubmissionReview.jsx'
+import AdminJournalList from './pages/AdminJournalList.jsx'
+import AdminJournalForm from './pages/AdminJournalForm.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function App() {
@@ -50,6 +52,9 @@ function App() {
             <Route path="admin/story-submissions/:id" element={<AdminStorySubmissionReview />} />
             <Route path="admin/maker-submissions" element={<AdminMakerSubmissionsList />} />
             <Route path="admin/maker-submissions/:id" element={<AdminMakerSubmissionReview />} />
+            <Route path="admin/journal" element={<AdminJournalList />} />
+            <Route path="admin/journal/new" element={<AdminJournalForm />} />
+            <Route path="admin/journal/:id" element={<AdminJournalForm />} />
           </Route>
         </Route>
       </Routes>

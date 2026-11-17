@@ -57,8 +57,13 @@
   inset: 0;
   z-index: 0;
   background-image: url("./images/quilttwo-rotated.png");
-  background-size: cover;
+  /* Tiled at native size (395x248), not `cover` — this grid grows taller
+     as more entries are published, and `cover` would zoom in further and
+     further to fill that height, cropping the quilt into an
+     unrecognizable blur. Tiling stays stable at any height. */
+  background-size: 395px 248px;
   background-position: center;
+  background-repeat: repeat;
   filter: saturate(181%);
 }
 

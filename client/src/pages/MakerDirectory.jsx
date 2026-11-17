@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { getMakers, getCategories } from '../lib/api.js'
 import { useAsync } from '../hooks/useAsync.js'
+import { usePaginatedList } from '../hooks/usePaginatedList.js'
 import FilterPills from '../components/FilterPills.jsx'
 import LocationFilter from '../components/LocationFilter.jsx'
 import MakerCard from '../components/MakerCard.jsx'
@@ -22,12 +23,19 @@ function MakerDirectory() {
     ...categories.map((category) => ({ value: category.slug, label: category.name })),
   ]
 
-  const { status, data, error, retry } = useAsync(
-    () => getMakers({ category: categoryFilter, location: locationFilter }),
+  const {
+    status,
+    items: makers,
+    error,
+    hasMore,
+    loadMore,
+    loadingMore,
+    retry,
+  } = usePaginatedList(
+    (offset, limit) => getMakers({ category: categoryFilter, location: locationFilter, offset, limit }),
     [categoryFilter, locationFilter],
   )
 
-  const makers = data?.data ?? []
   const activeCategoryLabel = categoryFilters.find((filter) => filter.value === categoryFilter)?.label
 
   return (
@@ -94,6 +102,19 @@ function MakerDirectory() {
           {makers.map((maker) => (
             <MakerCard key={maker.id} maker={maker} />
           ))}
+
+          {hasMore && (
+            <p className="maker-directory__load-more">
+              <button
+                type="button"
+                className="button button--secondary"
+                onClick={loadMore}
+                disabled={loadingMore}
+              >
+                {loadingMore ? 'Loading…' : 'See More Makers'}
+              </button>
+            </p>
+          )}
         </div>
       )}
     </section>

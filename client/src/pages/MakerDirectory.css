@@ -52,6 +52,12 @@
   gap: var(--space-md);
 }
 
+.maker-directory__load-more {
+  grid-column: 1 / -1;
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
 /* Same quilt-backdrop treatment as Journal's card grid (Journal.css) —
    a photo + a near-white wash behind the cards. bottomquilt.png is
    already landscape, so `cover` crops very little of it to fill this
@@ -71,8 +77,13 @@
   inset: 0;
   z-index: 0;
   background-image: url("./images/bottomquilt.png");
-  background-size: cover;
+  /* Tiled at native size (482x414), not `cover` — this grid grows taller
+     as more makers are added, and `cover` would zoom in further and
+     further to fill that height, cropping the quilt into an
+     unrecognizable blur. Tiling stays stable at any height. */
+  background-size: 482px 414px;
   background-position: center;
+  background-repeat: repeat;
 }
 
 .maker-directory .card-grid::after {

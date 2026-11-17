@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { getStories } from '../lib/api.js'
-import { useAsync } from '../hooks/useAsync.js'
+import { usePaginatedList } from '../hooks/usePaginatedList.js'
 import { STORY_TYPE_FILTERS } from '../lib/storyTypes.js'
 import FilterPills from '../components/FilterPills.jsx'
 import StoryCard from '../components/StoryCard.jsx'
@@ -15,12 +15,12 @@ function MadeWhole() {
   const typeFilter = searchParams.get('type') ?? ''
   const isKnownFilter = STORY_TYPE_FILTERS.some((filter) => filter.value === typeFilter)
 
-  const { status, data, error, retry } = useAsync(
-    () => getStories(isKnownFilter && typeFilter ? { type: typeFilter } : {}),
+  const { status, items: stories, error, hasMore, loadMore, loadingMore, retry } = usePaginatedList(
+    (offset, limit) =>
+      getStories({ ...(isKnownFilter && typeFilter ? { type: typeFilter } : {}), offset, limit }),
     [isKnownFilter, typeFilter],
   )
 
-  const stories = data?.data ?? []
   const activeLabel = STORY_TYPE_FILTERS.find((filter) => filter.value === typeFilter)?.label
 
   return (
@@ -81,6 +81,19 @@ function MadeWhole() {
               <StoryCard key={story.id} story={story} />
             ))}
           </div>
+
+          {hasMore && (
+            <p className="made-whole__load-more">
+              <button
+                type="button"
+                className="button button--secondary"
+                onClick={loadMore}
+                disabled={loadingMore}
+              >
+                {loadingMore ? 'Loading…' : 'See More Stories'}
+              </button>
+            </p>
+          )}
         </div>
       )}
     </section>

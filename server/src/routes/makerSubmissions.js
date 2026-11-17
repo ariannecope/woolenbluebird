@@ -55,6 +55,9 @@ makerSubmissionsRouter.post(
     const website = validateOptionalUrl(body.website)
     if (website.error) errors.website = website.error
 
+    const photo = validateOptionalUrl(body.photo)
+    if (photo.error) errors.photo = photo.error
+
     const socialLinks = validateSocialLinks(body.socialLinks)
     if (socialLinks.error) errors.socialLinks = socialLinks.error
 
@@ -108,6 +111,7 @@ makerSubmissionsRouter.post(
         description,
         craftCategory,
         website: website.value,
+        photo: photo.value,
         socialLinks: socialLinks.value ?? undefined,
         workshopInformation,
         recommendationReason,

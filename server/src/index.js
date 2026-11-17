@@ -12,6 +12,7 @@ import { makerSubmissionsRouter } from './routes/makerSubmissions.js'
 import { adminAuthRouter } from './routes/adminAuth.js'
 import { adminStorySubmissionsRouter } from './routes/adminStorySubmissions.js'
 import { adminMakerSubmissionsRouter } from './routes/adminMakerSubmissions.js'
+import { adminJournalRouter } from './routes/adminJournal.js'
 import { requireAdmin } from './middleware/requireAdmin.js'
 
 const app = express()
@@ -45,6 +46,7 @@ app.use('/api/maker-submissions', makerSubmissionsRouter)
 app.use('/api/admin', adminAuthRouter)
 app.use('/api/admin/story-submissions', requireAdmin, adminStorySubmissionsRouter)
 app.use('/api/admin/maker-submissions', requireAdmin, adminMakerSubmissionsRouter)
+app.use('/api/admin/journal', requireAdmin, adminJournalRouter)
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' })

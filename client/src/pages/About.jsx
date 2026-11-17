@@ -33,11 +33,12 @@ function About() {
             <p>Mine.</p>
             <p>
               A story about making, and what it can mean to create something
-              with your hands when life feels uncertain or difficult.{" "}</p>
-              <p>
-                Over time, I began wondering how many other people had found
-                meaning through making.
-              </p>
+              with your hands when life feels uncertain or difficult.{" "}
+            </p>
+            <p>
+              Over time, I began wondering how many other people had found
+              meaning through making.
+            </p>
             <p>
               I started collecting their stories like beautiful little scraps of
               cloth.
@@ -78,8 +79,8 @@ function About() {
         </p>
         <p>
           The needles moved back and forth. Left, right. Left, right. Again and
-          again. That bilateral rhythm gave my nervous system something
-          steady to follow as I healed from PTSD.
+          again. That bilateral rhythm gave my nervous system something steady
+          to follow as I healed from PTSD.
         </p>
         <p>
           Knitting became a way of staying present when my mind wanted to
@@ -90,7 +91,8 @@ function About() {
         </p>
         <p>
           The process restored me— caring for a living thing, washing and
-          carding the wool, spinning it into soft skeins, and then knitting or weaving something beautiful from it with my own hands.
+          carding the wool, spinning it into soft skeins, and then knitting or
+          weaving something beautiful from it with my own hands.
         </p>
         <p>
           I was broken by the dark actions of other human beings. Working with
@@ -104,6 +106,13 @@ function About() {
           through it. It helped me remember that my hands could create as well
           as endure, and that something beautiful could still come from a life
           that had been broken open.
+        </p>
+        <p className="about__closing-note">
+          The name Woolen Bluebird grew out of a childhood experience during a
+          very difficult time in my life. I carried the image of a tiny bluebird
+          held safely in my heart, a little song that could not be taken away
+          from me. Over the years, that bluebird became a symbol of hope,
+          resilience, and the possibility of healing.
         </p>
         <p>
           That's part of why Woolen Bluebird exists. It began as one piece — my
@@ -177,9 +186,9 @@ function About() {
       >
         <h2 id="community-heading">Woolen Bluebird became a community.</h2>
         <p>
-          Woolen Bluebird is like a growing blanket.
-          Every story shared here, and every maker added to the directory, is
-          another piece finding its place in the quilt. Today, it includes:
+          Woolen Bluebird is like a growing blanket. Every story shared here,
+          and every maker added to the directory, is another piece finding its
+          place in the quilt. Today, it includes:
         </p>
         <ul className="about__current-list">
           <li>
@@ -213,7 +222,7 @@ function About() {
         ref={nestRef}
         src={nestDrawing}
         alt=""
-        className={`about__nest bird-landing${nestRevealed ? ' bird-landing--in' : ''}`}
+        className={`about__nest bird-landing${nestRevealed ? " bird-landing--in" : ""}`}
       />
 
       <section
@@ -259,7 +268,7 @@ function About() {
         <p>Whatever brought you here, there's a piece of the quilt for you.</p>
         <ul
           ref={linksRef}
-          className={`about__links${linksSettled ? ' about__links--settled' : ''}`}
+          className={`about__links${linksSettled ? " about__links--settled" : ""}`}
         >
           <li>
             <Link to="/made-whole">Read a story in Made Whole</Link>

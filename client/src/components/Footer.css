@@ -23,3 +23,23 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
+
+/* Deliberately quiet — same muted tone and size as the copyright line
+   next to it, no underline at rest, so it doesn't read as a primary nav
+   item. Still a real link: underline appears on hover, and focus-visible
+   gets the site's standard focus ring so it's fully keyboard-usable. */
+.site-footer__admin-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.site-footer__admin-link:hover {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+}
+
+.site-footer__admin-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}

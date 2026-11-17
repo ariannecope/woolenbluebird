@@ -77,9 +77,14 @@
   background-image:
     linear-gradient(rgba(253, 251, 246, 0.4), rgba(253, 251, 246, 0.4)),
     url("./images/quiltone.png");
-  background-size: 100% 100%, cover;
+  /* Tiled at the photo's native size (420x615), not `cover` — this box
+     grows taller as more stories are added, and `cover` would have to
+     zoom in further and further to fill that height, eventually cropping
+     the quilt into an unrecognizable blur. Tiling stays visually stable
+     at any height. Same technique as About's quilt-fabric.png backdrop. */
+  background-size: 100% 100%, 420px 615px;
   background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+  background-repeat: no-repeat, repeat;
   filter: saturate(90%) sepia(5%) brightness(95%);
 }
 
@@ -89,4 +94,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: var(--space-lg);
+}
+
+.made-whole__load-more {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-lg);
+  text-align: center;
 }

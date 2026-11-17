@@ -216,6 +216,16 @@
   color: #6a6f9e;
 }
 
+.about__section .about__closing-note {
+  color: #6a6f9e;
+  /* Base is var(--font-size-lg), 1.15rem/18.4px — up 3pt (4px) from there.
+     Scoped with .about__section so this beats that section's own
+     `.about__section p` font-size rule, which outranks a bare
+     .about__closing-note class on specificity alone. */
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
 .about__portrait {
   max-width: 20rem;
   margin: 0 auto var(--space-lg);

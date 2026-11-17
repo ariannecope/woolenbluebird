@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { getStorySubmissions, getMakerSubmissions } from '../lib/adminApi.js'
+import { getStorySubmissions, getMakerSubmissions, getJournalEntries } from '../lib/adminApi.js'
 import { useAsync } from '../hooks/useAsync.js'
 import './Admin.css'
 
@@ -12,9 +12,11 @@ function AdminHome() {
     () => getMakerSubmissions({ status: 'PENDING' }),
     [],
   )
+  const { status: journalStatus, data: journalData } = useAsync(() => getJournalEntries(), [])
 
   const pendingStoryCount = storyData?.data?.length
   const pendingMakerCount = makerData?.data?.length
+  const journalCount = journalData?.data?.length
 
   return (
     <section>
@@ -37,6 +39,14 @@ function AdminHome() {
             {makerStatus === 'success' ? pendingMakerCount : '—'}
           </p>
           <p>Review submissions →</p>
+        </Link>
+
+        <Link to="/admin/journal" className="admin-overview__card">
+          <p>Journal Entries</p>
+          <p className="admin-overview__count">
+            {journalStatus === 'success' ? journalCount : '—'}
+          </p>
+          <p>Write or edit entries →</p>
         </Link>
       </div>
     </section>

@@ -17,6 +17,7 @@ const INITIAL_FORM = {
   email: '',
   location: '',
   description: '',
+  photo: '',
   website: '',
   instagram: '',
   facebook: '',
@@ -43,7 +44,7 @@ function validate(form, selectedCategories) {
     errors.craftCategory = 'Please choose at least one craft or making category.'
   }
 
-  for (const field of ['website', 'instagram', 'facebook', 'other']) {
+  for (const field of ['photo', 'website', 'instagram', 'facebook', 'other']) {
     const value = form[field].trim()
     if (value && !isLikelyUrl(value)) {
       errors[field] = 'Please enter a valid link.'
@@ -109,6 +110,7 @@ function SubmitMaker() {
         location: form.location.trim(),
         description: form.description.trim(),
         craftCategory: selectedCategories.join(', '),
+        photo: normalizeUrl(form.photo) || undefined,
         website: normalizeUrl(form.website) || undefined,
         socialLinks: Object.keys(socialLinks).length ? socialLinks : undefined,
         workshopInformation: form.workshopInformation.trim() || undefined,
@@ -259,6 +261,28 @@ function SubmitMaker() {
               aria-describedby={fieldErrors.description ? 'description-error' : undefined}
             />
             <FieldError id="description-error" message={fieldErrors.description} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="photo" className="field__label">
+              Photo URL
+            </label>
+            <p className="field__hint">
+              A link to a photo of you or your work, if you have one hosted somewhere (your own
+              site, Google Drive, etc.) — optional.
+            </p>
+            <input
+              id="photo"
+              name="photo"
+              type="url"
+              placeholder="example.com/your-photo.jpg"
+              value={form.photo}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              aria-invalid={fieldErrors.photo ? 'true' : undefined}
+              aria-describedby={fieldErrors.photo ? 'photo-error' : undefined}
+            />
+            <FieldError id="photo-error" message={fieldErrors.photo} />
           </div>
         </fieldset>
 

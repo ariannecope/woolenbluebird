@@ -52,6 +52,11 @@
   color: var(--color-warm-white);
 }
 
+.status-badge--draft {
+  background-color: var(--color-wool);
+  color: var(--color-earth-dark);
+}
+
 /* Overview */
 
 .admin-overview__grid {

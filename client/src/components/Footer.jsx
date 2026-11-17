@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 function Footer() {
@@ -11,6 +12,9 @@ function Footer() {
         <p className="site-footer__meta">
           &copy; {new Date().getFullYear()} Woolen Bluebird
         </p>
+        <Link to="/admin/login" className="site-footer__admin-link">
+          Admin
+        </Link>
       </div>
     </footer>
   )

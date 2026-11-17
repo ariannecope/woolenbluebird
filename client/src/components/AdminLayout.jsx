@@ -41,6 +41,12 @@ function AdminLayout() {
           >
             Maker Submissions
           </NavLink>
+          <NavLink
+            to="/admin/journal"
+            className={({ isActive }) => (isActive ? 'admin__nav-link is-active' : 'admin__nav-link')}
+          >
+            Journal
+          </NavLink>
         </nav>
         <button
           type="button"

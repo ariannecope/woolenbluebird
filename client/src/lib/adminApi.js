@@ -100,3 +100,26 @@ export function publishMakerSubmission(id, payload) {
     body: JSON.stringify(payload),
   })
 }
+
+export function getJournalEntries() {
+  return adminFetch('/api/admin/journal')
+}
+
+export function getJournalEntry(id) {
+  return adminFetch(`/api/admin/journal/${encodeURIComponent(id)}`)
+}
+
+export function createJournalEntry(payload) {
+  return adminFetch('/api/admin/journal', { method: 'POST', body: JSON.stringify(payload) })
+}
+
+export function updateJournalEntry(id, payload) {
+  return adminFetch(`/api/admin/journal/${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  })
+}
+
+export function deleteJournalEntry(id) {
+  return adminFetch(`/api/admin/journal/${encodeURIComponent(id)}`, { method: 'DELETE' })
+}

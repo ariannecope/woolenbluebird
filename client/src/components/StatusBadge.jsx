@@ -4,6 +4,7 @@ const LABELS = {
   REJECTED: 'Rejected',
   ARCHIVED: 'Archived',
   PUBLISHED: 'Published',
+  DRAFT: 'Draft',
 }
 
 /**
