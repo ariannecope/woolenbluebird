@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js'
 import aboutPhoto from './images/about.jpg'
 import nestDrawing from './images/nest.png'
+import knittingDrawing from './images/knitting.png'
 import './About.css'
 
 /*
@@ -82,6 +83,7 @@ function About() {
           again. That bilateral rhythm gave my nervous system something steady
           to follow as I healed from PTSD.
         </p>
+        <img src={knittingDrawing} alt="" className="about__knitting-accent" />
         <p>
           Knitting became a way of staying present when my mind wanted to
           disappear. It gave me a small, tangible way back into my body.

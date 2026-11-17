@@ -153,6 +153,22 @@
   filter: saturate(64%) blur(0.6px);
 }
 
+.about__knitting-accent {
+  display: block;
+  width: auto;
+  height: 10rem;
+  margin: var(--space-lg) auto;
+  opacity: 0.85;
+}
+
+/* The line art is black ink on a transparent background, so it nearly
+   vanishes against the dark theme's background — invert it to white
+   there instead. Alpha (the transparent background itself) is untouched
+   by filter: invert, only the ink color flips. */
+:root[data-theme="dark"] .about__knitting-accent {
+  filter: invert(1);
+}
+
 /*
  * Echoes Made Whole's backdrop (client/src/pages/images/quilt-fabric.png)
  * and StoryCard's dashed stitch inset, scoped to just this one section so
