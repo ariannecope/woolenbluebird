@@ -1,6 +1,24 @@
 .site-header {
+  position: relative;
   background-color: var(--color-bg-alt);
-  border-bottom: 1px solid var(--color-border);
+}
+
+/* A single strand of yarn as the nav's bottom edge, in place of a plain
+   border — original vector art (nav-yarn-strand.svg), not a photo trace:
+   it's drawn with preserveAspectRatio="none" specifically so it can
+   stretch to the exact page width here without distorting into an
+   obviously-stretched raster image. */
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 8px;
+  background-image: url("./nav-yarn-strand.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 
 .site-header__inner {

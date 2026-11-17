@@ -1,6 +1,5 @@
 .gather__intro {
   max-width: var(--content-narrow-width);
-  margin-inline: auto;
   margin-bottom: var(--space-lg);
 }
 
@@ -55,7 +54,6 @@
 
 .gather__section {
   max-width: var(--content-narrow-width);
-  margin-inline: auto;
 }
 
 .gather__section h2 {
