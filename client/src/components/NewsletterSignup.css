@@ -1,27 +1,37 @@
 .newsletter-signup {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-xs);
-  max-width: 24rem;
+  max-width: 28rem;
+  text-align: center;
 }
 
+/* The newsletter band's own backdrop (NewsletterBand.css) stays a pale
+   wash regardless of theme, so — like the About/Gather quilt sections —
+   this text is pinned to static dark tones rather than the semantic
+   --color-text/--color-text-muted tokens, which would otherwise flip to
+   light colors in dark mode and vanish against this always-light band. */
 .newsletter-signup__heading {
   margin: 0;
   font-family: var(--font-display);
+  font-size: var(--font-size-xl);
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-ink);
 }
 
 .newsletter-signup__blurb {
-  margin: 0;
+  margin: 0 0 var(--space-xs);
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--color-earth);
 }
 
 .newsletter-signup__row {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-xs);
+  width: 100%;
 }
 
 .newsletter-signup__label {
@@ -35,7 +45,9 @@
 .newsletter-signup__field-group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-xs);
+  width: 100%;
 }
 
 .newsletter-signup__input {
@@ -44,9 +56,9 @@
   padding: 0.5rem 0.75rem;
   font-size: var(--font-size-sm);
   font-family: var(--font-body);
-  color: var(--color-text);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  background-color: var(--color-warm-white);
+  border: 1px solid rgba(46, 42, 36, 0.18);
   border-radius: var(--radius-sm);
 }
 

@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Nav from './Nav.jsx'
+import NewsletterBand from './NewsletterBand.jsx'
 import Footer from './Footer.jsx'
 import BackToTop from './BackToTop.jsx'
 
@@ -14,6 +15,7 @@ function Layout() {
         <Outlet />
       </main>
       <BackToTop />
+      <NewsletterBand />
       <Footer />
     </>
   )

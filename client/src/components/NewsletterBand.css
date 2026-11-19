@@ -1,0 +1,39 @@
+/* A very pale tint of the site's dusky blue (--quilt-stitch-color), held
+   constant across themes rather than swapped for a dark-mode tone — same
+   "light backdrop regardless of theme" choice used for the quilt sections
+   in About.css/Gather.css, so the yarn-strand edges below always read
+   against a light wash. */
+.newsletter-band {
+  position: relative;
+  background-color: color-mix(in srgb, var(--quilt-stitch-color) 14%, white);
+}
+
+/* Same yarn-strand art as the nav's bottom trim (Nav.css), framing the
+   band's top and bottom edges the same way: centered on the boundary line,
+   straddling it by 4px on either side. */
+.newsletter-band::before,
+.newsletter-band::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: url('./nav-yarn-strand.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.newsletter-band::before {
+  top: -4px;
+}
+
+.newsletter-band::after {
+  bottom: -4px;
+}
+
+.newsletter-band__inner {
+  padding-block: var(--space-xl);
+  display: flex;
+  justify-content: center;
+}

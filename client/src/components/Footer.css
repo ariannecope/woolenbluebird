@@ -9,17 +9,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: var(--space-lg) var(--space-sm);
-}
-
-/* Groups the original tagline/copyright/admin-link trio into one flex item
-   so it wraps against the newsletter signup as a unit, while preserving
-   their previous inline arrangement among themselves. */
-.site-footer__about {
-  display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-sm) var(--space-lg);
 }
 
 .site-footer__tagline {
