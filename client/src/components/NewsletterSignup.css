@@ -1,0 +1,72 @@
+.newsletter-signup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-width: 24rem;
+}
+
+.newsletter-signup__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.newsletter-signup__blurb {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.newsletter-signup__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.newsletter-signup__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.newsletter-signup__field-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.newsletter-signup__input {
+  flex: 1 1 14rem;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.newsletter-signup__input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.newsletter-signup__error {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+.newsletter-signup--done {
+  max-width: 20rem;
+}
+
+.newsletter-signup__success {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-success);
+}

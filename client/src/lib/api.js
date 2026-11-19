@@ -98,3 +98,7 @@ export function submitStory(payload) {
 export function submitMaker(payload) {
   return apiPost('/api/maker-submissions', payload)
 }
+
+export function subscribeToNewsletter(email) {
+  return apiPost('/api/newsletter/subscribers', { email })
+}

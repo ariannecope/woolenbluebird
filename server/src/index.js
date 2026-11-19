@@ -9,6 +9,7 @@ import { categoriesRouter } from './routes/categories.js'
 import { gatheringsRouter } from './routes/gatherings.js'
 import { storySubmissionsRouter } from './routes/storySubmissions.js'
 import { makerSubmissionsRouter } from './routes/makerSubmissions.js'
+import { newsletterSubscriptionsRouter } from './routes/newsletterSubscriptions.js'
 import { adminAuthRouter } from './routes/adminAuth.js'
 import { adminStorySubmissionsRouter } from './routes/adminStorySubmissions.js'
 import { adminMakerSubmissionsRouter } from './routes/adminMakerSubmissions.js'
@@ -42,6 +43,7 @@ app.use('/api/categories', categoriesRouter)
 app.use('/api/gatherings', gatheringsRouter)
 app.use('/api/story-submissions', storySubmissionsRouter)
 app.use('/api/maker-submissions', makerSubmissionsRouter)
+app.use('/api/newsletter/subscribers', newsletterSubscriptionsRouter)
 
 app.use('/api/admin', adminAuthRouter)
 app.use('/api/admin/story-submissions', requireAdmin, adminStorySubmissionsRouter)

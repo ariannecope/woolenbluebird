@@ -35,6 +35,15 @@ enum StoryStatus {
   ARCHIVED
 }
 
+/// Newsletter subscriber lifecycle. PENDING means signed up but not yet
+/// confirmed via double opt-in; nothing in the current codebase can produce
+/// ACTIVE yet, since email confirmation isn't built. See Subscriber below.
+enum SubscriberStatus {
+  PENDING
+  ACTIVE
+  UNSUBSCRIBED
+}
+
 enum MakerStatus {
   PENDING
   APPROVED
@@ -219,4 +228,49 @@ model Gathering {
 
   @@index([isPublished])
   @@index([startsAt])
+}
+
+// ---------------------------------------------------------------------------
+// Newsletter — subscriber foundation only (PRD explicitly defers automated
+// newsletters). No email provider is connected and no editor exists yet;
+// this just records consent and reserves the double opt-in fields so the
+// confirm/resend/unsubscribe flows can be added later without a schema
+// change or a second subscriber record per person.
+// ---------------------------------------------------------------------------
+
+model Subscriber {
+  id     String           @id @default(cuid())
+  email  String           @unique
+  status SubscriberStatus @default(PENDING)
+
+  /// When this person took the action of signing up — the explicit-consent
+  /// event. Deliberately separate from createdAt/updatedAt: a duplicate
+  /// signup while PENDING or ACTIVE does NOT move this forward (no new
+  /// consent occurred), but resubscribing after UNSUBSCRIBED does, since
+  /// that's a new consent event for the same address.
+  consentedAt DateTime
+
+  /// Identifies which version of the signup consent language this person
+  /// agreed to, for audit purposes. Stamped by the server from a fixed
+  /// constant (not trusted from client input) alongside every consentedAt
+  /// update, so the two always describe the same consent event.
+  consentTextVersion String
+
+  /// Set once the (not-yet-built) email-confirmation step completes.
+  confirmedAt DateTime?
+
+  /// Set when this person opts out. Cleared on a later resubscribe.
+  unsubscribedAt DateTime?
+
+  /// Token for the future confirm-email link, and its 48-hour expiry.
+  /// Regenerated on signup, on a future resend-confirmation request (while
+  /// still PENDING), and on resubscribe after UNSUBSCRIBED — always
+  /// updating the same row rather than creating a duplicate Subscriber.
+  confirmationToken          String?   @unique
+  confirmationTokenExpiresAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
 }
