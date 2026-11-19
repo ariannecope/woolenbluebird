@@ -216,6 +216,10 @@
   color: var(--color-ink);
 }
 
+.about__section--quilt .about__pullquote--question p {
+  color: var(--quilt-stitch-color);
+}
+
 .about__section h2 {
   margin-bottom: var(--space-md);
   font-family: "Tangerine", cursive;
